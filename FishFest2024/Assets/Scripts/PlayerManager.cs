@@ -26,10 +26,11 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         Locomotions();
+        playerInputHandler.ResetMouseMovement();
     }
 
     private void Locomotions()
     {
-        
+        playerLocomotion.HandleMovement(playerInputHandler.mouseMovement);
     }
 }

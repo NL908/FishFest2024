@@ -14,10 +14,12 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
 
-    public void HandleMovement()
+    public void HandleMovement(Vector2 mouseMovement)
     {
-        // Movement
-        
+        // TODO: compute the magnitude based on the movement mag and screen size?
+        float mag = 1;
+        Vector2 dir= -mouseMovement.normalized;
+        _rb.AddForce(dir * mag, ForceMode2D.Impulse);
     }
 
     public void HandleRotation()
