@@ -7,13 +7,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public float movement;
+    public Vector2 movement;
 
     private InputAction _moveInputAction;
-
-    public bool jumpFlag;
-    public bool isJumpPerforming;
-
     private void OnEnable()
     {
         _moveInputAction = InputManager.inputActions.Player.Movement;
@@ -39,7 +35,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void MoveInput()
     {
-        movement = _moveInputAction.ReadValue<float>();
+        movement = _moveInputAction.ReadValue<Vector2>();
     }
 
     private void OnJumpPress(InputAction.CallbackContext obj)
