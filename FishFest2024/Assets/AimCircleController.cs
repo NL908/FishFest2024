@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class AimCircleController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class AimCircleController : MonoBehaviour
     private SpriteRenderer _sr;
 
     private LineRenderer _lrAim;
+
+    private RotationConstraint _rc;
 
     [SerializeField]
     float aimLineStartingDistance = 0.25f;
@@ -19,6 +22,7 @@ public class AimCircleController : MonoBehaviour
         _circleAnimator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
         _lrAim = GetComponentInChildren<LineRenderer>();
+        _rc = GetComponent<RotationConstraint>();
     }
 
     private void Start()
@@ -28,6 +32,11 @@ public class AimCircleController : MonoBehaviour
 
         _lrAim.positionCount = 2;
         _lrAim.SetPosition(0, Vector3.zero);
+
+        ConstraintSource source = new ConstraintSource();
+        source.sourceTransform = Camera.main.transform;
+        source.weight = 1f;
+        _rc.AddSource(source);
     }
 
     public void EnableAim()
