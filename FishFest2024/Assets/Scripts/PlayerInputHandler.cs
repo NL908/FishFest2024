@@ -45,7 +45,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void MoveInput()
     {
-        //TODO: See if we can use this instead of Input,mousePosition
         mousePosition = _movePositionAction.ReadValue<Vector2>();
         aimDirection = (startMousePos - mousePosition).normalized;
     }
@@ -66,6 +65,8 @@ public class PlayerInputHandler : MonoBehaviour
         mouseMovement = endMousePos - startMousePos;
         // Set flag
         playerManager.isAiming = false;
+        // Reduce HP
+        playerManager.ChangeHPForMove();
     }
 
     public void ResetMouseMovement()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class PlayerManager : MonoBehaviour
     PlayerLocomotion playerLocomotion;
 
     AimCircleController aimCircleController;
+
+    // Player Attributes
+    public int hp = 10;
+    public int maxHP = 10;
+
+    // HUD object
+    public Text HPText;
+    public GameObject HPBar;
 
     //[Header("Player Flags")]
     public bool isAiming;
@@ -21,6 +30,8 @@ public class PlayerManager : MonoBehaviour
         playerInputHandler = GetComponent<PlayerInputHandler>();
         playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
         aimCircleController = GetComponentInChildren<AimCircleController>();
+
+        HPText.text = hp.ToString() + "/" + maxHP.ToString();
     }
 
     private void Update()
@@ -30,11 +41,12 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Perform movements
         Locomotions();
-        playerInputHandler.ResetMouseMovement();
-
+        // Handle Aim Circle
         HandleAimCircle();
-
+        // Reset
+        playerInputHandler.ResetMouseMovement();
         ResetFlags();
     }
 
@@ -62,5 +74,27 @@ public class PlayerManager : MonoBehaviour
     private void ResetFlags()
     {
         isAimTriggered = false;
+    }
+
+    public void ChangeHPForMove()
+    {
+        ChangeHP(hp - 1);
+    }
+
+    private void ChangeHP(int newHP)
+    {
+        hp  = newHP;
+        // Update the HP UI
+        HPText.text = hp.ToString() + "/" + maxHP.ToString();
+        RectTransform[] HPBarChildren = HPBar.GetComponentsInChildren<RectTransform>();
+        RectTransform border = HPBarChildren[0];
+        RectTransform fill = HPBarChildren[1];
+        fill.sizeDelta = new Vector2(hp * 1f / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
+        // HP detection
+        if (hp <= 0)
+        {
+            // Game Over
+            Debug.Log("Game Over");
+        }
     }
 }
