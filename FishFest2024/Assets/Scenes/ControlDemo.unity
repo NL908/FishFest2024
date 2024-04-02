@@ -1456,10 +1456,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1698197578408068890, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1814591277695859541, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: HPBar
       value: 
@@ -1468,10 +1464,6 @@ PrefabInstance:
       propertyPath: HPText
       value: 
       objectReference: {fileID: 1717989116}
-    - target: {fileID: 2001272170950544515, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
-      propertyPath: m_GravityScale
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2361066876137243302, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1510,10 +1502,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2361066876137243302, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624587692858557231, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5886736742042737969, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}

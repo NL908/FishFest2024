@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
-    private Rigidbody2D _rb;
+    private Rigidbody2D[] _rbs;
     private PlayerManager _playerManager;
+
+    [SerializeField]
+    private float _jumpForce = 5f;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rbs = GetComponentsInChildren<Rigidbody2D>();
         _playerManager = GetComponent<PlayerManager>();
     }
 
@@ -17,9 +20,9 @@ public class PlayerLocomotion : MonoBehaviour
     public void HandleMovement(Vector2 mouseMovement)
     {
         // TODO: compute the magnitude based on the movement mag and screen size?
-        float mag = 1;
         Vector2 dir= -mouseMovement.normalized;
-        _rb.AddForce(dir * mag, ForceMode2D.Impulse);
+        foreach(Rigidbody2D rb in _rbs)
+            rb.AddForce(dir * _jumpForce, ForceMode2D.Impulse);
     }
 
     public void HandleRotation()
