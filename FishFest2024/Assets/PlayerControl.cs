@@ -28,7 +28,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""id"": ""fd48e2b7-b6b8-452d-bc56-f2dd922f586a"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
+                    ""name"": ""MousePostition"",
                     ""type"": ""Value"",
                     ""id"": ""a5337cab-7801-4901-9e09-eebb0b46e5e8"",
                     ""expectedControlType"": ""Vector2"",
@@ -59,22 +59,11 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1c057638-da0f-47aa-b226-3e24c827410d"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fe1b528c-7478-4e5f-af65-c261876b488c"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""MousePostition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -157,7 +146,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_MousePostition = m_Player.FindAction("MousePostition", throwIfNotFound: true);
         m_Player_JumpPress = m_Player.FindAction("JumpPress", throwIfNotFound: true);
         m_Player_JumpRelease = m_Player.FindAction("JumpRelease", throwIfNotFound: true);
         // Pause
@@ -224,14 +213,14 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_MousePostition;
     private readonly InputAction m_Player_JumpPress;
     private readonly InputAction m_Player_JumpRelease;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
         public PlayerActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @MousePostition => m_Wrapper.m_Player_MousePostition;
         public InputAction @JumpPress => m_Wrapper.m_Player_JumpPress;
         public InputAction @JumpRelease => m_Wrapper.m_Player_JumpRelease;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -243,9 +232,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @Movement.started += instance.OnMovement;
-            @Movement.performed += instance.OnMovement;
-            @Movement.canceled += instance.OnMovement;
+            @MousePostition.started += instance.OnMousePostition;
+            @MousePostition.performed += instance.OnMousePostition;
+            @MousePostition.canceled += instance.OnMousePostition;
             @JumpPress.started += instance.OnJumpPress;
             @JumpPress.performed += instance.OnJumpPress;
             @JumpPress.canceled += instance.OnJumpPress;
@@ -256,9 +245,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Movement.started -= instance.OnMovement;
-            @Movement.performed -= instance.OnMovement;
-            @Movement.canceled -= instance.OnMovement;
+            @MousePostition.started -= instance.OnMousePostition;
+            @MousePostition.performed -= instance.OnMousePostition;
+            @MousePostition.canceled -= instance.OnMousePostition;
             @JumpPress.started -= instance.OnJumpPress;
             @JumpPress.performed -= instance.OnJumpPress;
             @JumpPress.canceled -= instance.OnJumpPress;
@@ -330,7 +319,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     public PauseActions @Pause => new PauseActions(this);
     public interface IPlayerActions
     {
-        void OnMovement(InputAction.CallbackContext context);
+        void OnMousePostition(InputAction.CallbackContext context);
         void OnJumpPress(InputAction.CallbackContext context);
         void OnJumpRelease(InputAction.CallbackContext context);
     }

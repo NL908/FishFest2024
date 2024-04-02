@@ -7,14 +7,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public Vector2 movement;
+    PlayerManager playerManager;
+    public Vector2 mousePosition;
     public Vector2 mouseMovement;
+    public Vector2 aimDirection;
 
-    private InputAction _moveInputAction;
+    private InputAction _movePositionAction;
     private Vector2 startMousePos;
+
+    private void Awake()
+    {
+        playerManager = GetComponent<PlayerManager>();
+    }
+
     private void OnEnable()
     {
-        _moveInputAction = InputManager.inputActions.Player.Movement;
+        _movePositionAction = InputManager.inputActions.Player.MousePostition;
 
         InputManager.inputActions.Player.JumpPress.performed += OnJumpPress;
 
@@ -38,24 +46,39 @@ public class PlayerInputHandler : MonoBehaviour
     private void MoveInput()
     {
         //TODO: See if we can use this instead of Input,mousePosition
-        movement = _moveInputAction.ReadValue<Vector2>();
+        mousePosition = _movePositionAction.ReadValue<Vector2>();
+        aimDirection = (startMousePos - mousePosition).normalized;
     }
 
     private void OnJumpPress(InputAction.CallbackContext obj)
     {
         // Record mouse position on press
-        startMousePos = Input.mousePosition;
+        startMousePos = mousePosition;
+        // Set flag
+        playerManager.isAiming = true;
+        playerManager.isAimTriggered = true;
     }
 
     private void OnJumpRelease(InputAction.CallbackContext obj)
     {
         // Compute the mouse movement delta
-        Vector2 endMousePos = Input.mousePosition;
+        Vector2 endMousePos = mousePosition;
         mouseMovement = endMousePos - startMousePos;
+        // Set flag
+        playerManager.isAiming = false;
     }
 
     public void ResetMouseMovement()
     {
         mouseMovement = Vector2.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Application.isPlaying && playerManager.isAiming)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(Camera.main.ScreenToWorldPoint(startMousePos), Camera.main.ScreenToWorldPoint(mousePosition));
+        }
     }
 }

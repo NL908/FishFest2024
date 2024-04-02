@@ -6,7 +6,7 @@
             "id": "fd48e2b7-b6b8-452d-bc56-f2dd922f586a",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "MousePostition",
                     "type": "Value",
                     "id": "a5337cab-7801-4901-9e09-eebb0b46e5e8",
                     "expectedControlType": "Vector2",
@@ -37,22 +37,11 @@
                 {
                     "name": "",
                     "id": "1c057638-da0f-47aa-b226-3e24c827410d",
-                    "path": "<Mouse>/delta",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fe1b528c-7478-4e5f-af65-c261876b488c",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
+                    "action": "MousePostition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
