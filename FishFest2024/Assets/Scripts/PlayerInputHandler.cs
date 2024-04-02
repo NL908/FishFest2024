@@ -65,8 +65,7 @@ public class PlayerInputHandler : MonoBehaviour
         mouseMovement = endMousePos - startMousePos;
         // Set flag
         playerManager.isAiming = false;
-        // Reduce HP
-        playerManager.ChangeHPForMove();
+        playerManager.isJumpPerformed = true;
     }
 
     public void ResetMouseMovement()

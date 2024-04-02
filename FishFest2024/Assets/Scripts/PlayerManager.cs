@@ -20,9 +20,10 @@ public class PlayerManager : MonoBehaviour
     public Text HPText;
     public GameObject HPBar;
 
-    //[Header("Player Flags")]
+    [Header("Player Flags")]
     public bool isAiming;
     public bool isAimTriggered;
+    public bool isJumpPerformed; // True when jump is performed
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        // Gather Inputs
         playerInputHandler.TickInput();
         // Handle Aim Circle
         HandleAimCircle();
@@ -44,16 +46,22 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         // Perform movements
-        Locomotions();
+        HandleJump();
         
         // Reset
-        playerInputHandler.ResetMouseMovement();
-        ResetFlags();
+        ResetInputs();
     }
 
-    private void Locomotions()
+    private void HandleJump()
     {
-        playerLocomotion.HandleMovement(playerInputHandler.mouseMovement);
+        if(isJumpPerformed)
+        {
+            // Call Locomotion to perform jump locomotion
+            playerLocomotion.HandleMovement(playerInputHandler.mouseMovement);
+
+            // Decrese HP when jump
+            ChangeHPForMove();
+        }
     }
 
     private void HandleAimCircle()
@@ -75,9 +83,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void ResetFlags()
+    private void ResetInputs()
     {
         isAimTriggered = false;
+        isJumpPerformed = false;
     }
 
     public void ChangeHPForMove()
