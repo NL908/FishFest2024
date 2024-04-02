@@ -37,14 +37,15 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         playerInputHandler.TickInput();
+        // Handle Aim Circle
+        HandleAimCircle();
     }
 
     private void FixedUpdate()
     {
         // Perform movements
         Locomotions();
-        // Handle Aim Circle
-        HandleAimCircle();
+        
         // Reset
         playerInputHandler.ResetMouseMovement();
         ResetFlags();
@@ -59,7 +60,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (isAimTriggered)
         {
+            // Aim is triggered
             aimCircleController.EnableAim();
+            Time.timeScale = 0.2f;
         }
         if (isAiming)
         {
@@ -68,6 +71,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             aimCircleController.DisableAim();
+            Time.timeScale = 1f;
         }
     }
 
