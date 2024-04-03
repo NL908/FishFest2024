@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mine : Collidable
+public class Mine : CollidableEntity
 {
     [SerializeField]
     private float healthLost;
