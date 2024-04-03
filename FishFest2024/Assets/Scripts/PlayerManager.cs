@@ -119,6 +119,7 @@ public class PlayerManager : MonoBehaviour
         {
             // Game Over
             Debug.Log("Game Over");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
