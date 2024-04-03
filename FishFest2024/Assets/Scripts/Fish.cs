@@ -12,9 +12,9 @@ public class Fish : Collidable
         playerManager.HandleFishCollision();
     }
 
-    protected override void PlayDeathAnimation()
+    protected override void HandleDeath()
     {
-        Debug.Log("Play Animation");
-        // TODO: add death animation for fish
+        // TODO: Play Death particle and sound effect
+        Debug.Log("DEATH DESU");
     }
 }

@@ -25,11 +25,11 @@ public abstract class Collidable : MonoBehaviour
             // Prevent multiple bone collision
             _collider.enabled = false;
             HandleCollision();
-            PlayDeathAnimation();
+            HandleDeath();
             Destroy(gameObject);
             Debug.Log(collision.gameObject.name);
         }
     }
     protected abstract void HandleCollision();
-    protected abstract void PlayDeathAnimation();
+    protected abstract void HandleDeath();
 }
