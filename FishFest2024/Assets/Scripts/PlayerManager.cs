@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
     private float hp;
     [SerializeField]
     private float maxHP = 20;
+    [SerializeField]
+    private float hpDeleptionRate = 0.1f;
 
     // HUD object
     public Text HPText;
@@ -26,6 +28,13 @@ public class PlayerManager : MonoBehaviour
     public bool isAiming;
     public bool isAimTriggered;
     public bool isJumpPerformed; // True when jump is performed
+    public bool isActive = false;
+
+    public void InitailizePlayer()
+    {
+        ChangeHP(maxHP);
+        isActive = true;
+    }
 
     private void Awake()
     {
@@ -33,8 +42,7 @@ public class PlayerManager : MonoBehaviour
         playerInputHandler = GetComponent<PlayerInputHandler>();
         playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
         aimCircleController = GetComponentInChildren<AimCircleController>();
-
-        ChangeHP(maxHP);
+        InitailizePlayer();
     }
 
     private void Update()
@@ -43,6 +51,12 @@ public class PlayerManager : MonoBehaviour
         playerInputHandler.TickInput();
         // Handle Aim Circle
         HandleAimCircle();
+
+        // Reduce HP with time
+        if (isActive)
+        {
+            HandleHPDepletion();
+        }
     }
 
     private void FixedUpdate()
@@ -94,7 +108,7 @@ public class PlayerManager : MonoBehaviour
     {
         hp  = Mathf.Clamp(newHP, 0, maxHP);
         // Update the HP UI
-        HPText.text = hp.ToString() + "/" + maxHP.ToString();
+        HPText.text = System.Math.Round(hp, 1).ToString() + "/" + System.Math.Round(maxHP, 1).ToString();
         RectTransform[] HPBarChildren = HPBar.GetComponentsInChildren<RectTransform>();
         RectTransform border = HPBarChildren[0];
         RectTransform fill = HPBarChildren[1];
@@ -114,5 +128,9 @@ public class PlayerManager : MonoBehaviour
     public void HandleMineCollision(float healthLost)
     {
         ChangeHP(hp - healthLost);
+    }
+    public void HandleHPDepletion()
+    {
+        ChangeHP(hp - Time.deltaTime * hpDeleptionRate);
     }
 }
