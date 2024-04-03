@@ -15,9 +15,11 @@ public class PlayerManager : MonoBehaviour
 
     // Player Attributes
     [SerializeField]
+    private const float DefaultHP = 20;
+    [SerializeField]
     private float hp;
     [SerializeField]
-    private float maxHP = 20;
+    private float maxHP = DefaultHP;
     [SerializeField]
     private float hpDeleptionRate = 0.1f;
 
@@ -29,13 +31,8 @@ public class PlayerManager : MonoBehaviour
     public bool isAiming;
     public bool isAimTriggered;
     public bool isJumpPerformed; // True when jump is performed
-    public bool isActive = false;
-
-    public void InitailizePlayer()
-    {
-        ChangeHP(maxHP);
-        isActive = true;
-    }
+    public bool isControllable = false;
+    public bool isHealthDepleting = false;
 
     private void Awake()
     {
@@ -43,41 +40,39 @@ public class PlayerManager : MonoBehaviour
         playerInputHandler = GetComponent<PlayerInputHandler>();
         playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
         aimCircleController = GetComponentInChildren<AimCircleController>();
-        InitailizePlayer();
+        isControllable = true;
+        IntializePlayerStats();
     }
 
     private void Update()
     {
         // Gather Inputs
         playerInputHandler.TickInput();
-        // Handle Aim Circle
         HandleAimCircle();
-
-        // Reduce HP with time
-        if (isActive)
-        {
-            HandleHPDepletion();
-        }
+        HandleHPDepletion();
     }
 
     private void FixedUpdate()
     {
         // Perform movements
         HandleJump();
-        
+
         // Reset
         ResetInputs();
     }
 
     private void HandleJump()
     {
-        if(isJumpPerformed)
+        if (isJumpPerformed)
         {
             // Call Locomotion to perform jump locomotion
             playerLocomotion.HandleJump(playerInputHandler.aimDirection);
 
             // Decrese HP when jump
-            ChangeHP(hp - 1f);
+            if (isHealthDepleting)
+            {
+                ChangeHP(hp - 1f);
+            }
         }
     }
 
@@ -107,7 +102,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void ChangeHP(float newHP)
     {
-        hp  = Mathf.Clamp(newHP, 0, maxHP);
+        hp = Mathf.Clamp(newHP, 0, maxHP);
         // Update the HP UI
         HPText.text = System.Math.Round(hp, 1).ToString() + "/" + System.Math.Round(maxHP, 1).ToString();
         RectTransform[] HPBarChildren = HPBar.GetComponentsInChildren<RectTransform>();
@@ -116,7 +111,7 @@ public class PlayerManager : MonoBehaviour
         fill.sizeDelta = new Vector2(hp / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
         // HP detection
         if (hp <= 0f)
-        { 
+        {
             GameOver("Game Over due to no health");
         }
     }
@@ -136,7 +131,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void HandleHPDepletion()
     {
-        ChangeHP(hp - Time.deltaTime * hpDeleptionRate);
+        if (isHealthDepleting)
+        {
+            ChangeHP(hp - Time.deltaTime * hpDeleptionRate);
+        }
     }
 
     public void ChangeVelocity(Vector2 velocity)
@@ -153,9 +151,21 @@ public class PlayerManager : MonoBehaviour
     public void GameOver(string reason)
     {
         Debug.Log(reason);
-        isActive = false;
+        isControllable = false;
+        isHealthDepleting = false;
         InputManager.inputActions.Player.Disable();
         Time.timeScale = 0;
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // TODO: enter transition animation, and save any persistent stats
+    }
+
+    public void GameStart()
+    {
+        isControllable = true;
+        isHealthDepleting = true;
+    }
+
+    public void IntializePlayerStats()
+    {
+        ChangeHP(maxHP);
     }
 }
