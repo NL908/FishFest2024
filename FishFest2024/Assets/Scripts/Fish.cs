@@ -2,41 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : MonoBehaviour
+public class Fish : Collidable
 {
     [SerializeField]
-    private float size;
-    [SerializeField]
     private float healthGained;
-    [SerializeField]
-    private Vector2 velocity;
 
-    private Rigidbody2D _rb;
-    private CapsuleCollider2D _collider;
-    private PlayerManager playerManager = PlayerManager.instance;
-
-    void Start()
+    protected override void HandleCollision()
     {
-        _rb= GetComponent<Rigidbody2D>();
-        _collider = GetComponent<CapsuleCollider2D>();
+        playerManager.HandleFishCollision();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void PlayDeathAnimation()
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Check for collision with player
-        if (collision.gameObject.layer == 3)
-        {
-            Debug.Log(collision.gameObject.name);
-            // Prevent multiple bone collision
-            _collider.enabled = false;
-            playerManager.HandleFishCollision();
-            Destroy(gameObject);
-        }
+        Debug.Log("Play Animation");
+        // TODO: add death animation for fish
     }
 }
