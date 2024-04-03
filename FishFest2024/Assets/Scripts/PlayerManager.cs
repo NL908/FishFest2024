@@ -147,4 +147,10 @@ public class PlayerManager : MonoBehaviour
     {
         playerLocomotion.ChangeVelocity(velocity);
     }
+
+    public void IncreaseMaxHP(float maxHPIncreased)
+    {
+        maxHP += maxHPIncreased;
+        ChangeHP(hp + maxHPIncreased);
+    }
 }
