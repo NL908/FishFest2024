@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : Collidable
+public class Mine : Collidable
 {
     [SerializeField]
-    private float healthGained;
+    private float healthLost;
 
     protected override void HandleCollision()
     {
-        playerManager.HandleFishCollision(healthGained);
+        playerManager.HandleMineCollision(healthLost);
     }
 
     protected override void HandleDeath()
     {
         // TODO: Play Death particle and sound effect
-        Debug.Log("DEATH DESU");
+        Debug.Log("BOOM DESU");
     }
 }

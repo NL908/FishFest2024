@@ -90,7 +90,7 @@ public class PlayerManager : MonoBehaviour
         isAimTriggered = false;
         isJumpPerformed = false;
     }
-    private void ChangeHP(float newHP)
+    public void ChangeHP(float newHP)
     {
         hp  = Mathf.Clamp(newHP, 0, maxHP);
         // Update the HP UI
@@ -107,8 +107,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void HandleFishCollision()
+    public void HandleFishCollision(float healthGained)
     {
-        ChangeHP(hp + 1f);
+        ChangeHP(hp + healthGained);
+    }
+    public void HandleMineCollision(float healthLost)
+    {
+        ChangeHP(hp - healthLost);
     }
 }
