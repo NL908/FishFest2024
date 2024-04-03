@@ -14,7 +14,7 @@ public class Fish : CollidableEntity
 
     protected override void HandleDeath()
     {
-        // TODO: Play Death particle and sound effect
-        Debug.Log("DEATH DESU");
+        // TODO: Play Death particle
+        if (AudioManager.instance) AudioManager.instance.PlaySound("fish_death");
     }
 }

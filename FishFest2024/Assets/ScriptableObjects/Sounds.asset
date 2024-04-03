@@ -18,3 +18,18 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - soundName: mine_explode
+    clip: {fileID: 8300000, guid: 45183b1ee58e7b84c8eda4a28fbedf1d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: item_get
+    clip: {fileID: 8300000, guid: 3f0080efed31251439eb1a2f05d5b168, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: fish_death
+    clip: {fileID: 8300000, guid: dcb90721797df884d92b1f92dfd4c6c7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0

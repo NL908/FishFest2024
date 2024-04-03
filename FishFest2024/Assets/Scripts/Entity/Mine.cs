@@ -22,7 +22,7 @@ public class Mine : CollidableEntity
 
     protected override void HandleDeath()
     {
-        // TODO: Play Death particle and sound effect
-        Debug.Log("BOOM DESU");
+        // TODO: Play Death particle
+        if (AudioManager.instance) AudioManager.instance.PlaySound("mine_explode");
     }
 }
