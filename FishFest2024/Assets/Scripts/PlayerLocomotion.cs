@@ -16,22 +16,14 @@ public class PlayerLocomotion : MonoBehaviour
         _playerManager = GetComponent<PlayerManager>();
     }
 
-
-    public void HandleMovement(Vector2 mouseMovement)
+    public void HandleJump(Vector2 moveDirection)
     {
-        // TODO: compute the magnitude based on the movement mag and screen size?
-        Vector2 dir= -mouseMovement.normalized;
-        foreach(Rigidbody2D rb in _rbs)
-            rb.AddForce(dir * _jumpForce, ForceMode2D.Impulse);
+        ChangeVelocity(moveDirection * _jumpForce);
     }
 
-    public void HandleRotation()
+    public void ChangeVelocity(Vector2 newVelocity)
     {
-
-    }
-
-    public void HandleJump()
-    {
-
+        foreach (Rigidbody2D rb in _rbs)
+            rb.velocity = newVelocity;
     }
 }

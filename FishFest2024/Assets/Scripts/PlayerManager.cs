@@ -74,7 +74,7 @@ public class PlayerManager : MonoBehaviour
         if(isJumpPerformed)
         {
             // Call Locomotion to perform jump locomotion
-            playerLocomotion.HandleMovement(playerInputHandler.mouseMovement);
+            playerLocomotion.HandleJump(playerInputHandler.aimDirection);
 
             // Decrese HP when jump
             ChangeHP(hp - 1f);
@@ -141,5 +141,10 @@ public class PlayerManager : MonoBehaviour
     public void HandleHPDepletion()
     {
         ChangeHP(hp - Time.deltaTime * hpDeleptionRate);
+    }
+
+    public void ChangeVelocity(Vector2 velocity)
+    {
+        playerLocomotion.ChangeVelocity(velocity);
     }
 }
