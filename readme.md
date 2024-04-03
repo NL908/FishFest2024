@@ -2,7 +2,7 @@
 
 ## TODO Items
 ### MVP
-- [ ] Game Stage Scene
+- [X] Game Stage Scene
 ### Visual
 - [ ] Slow time VFX
 - [ ] Mine/Fish death animation/sound

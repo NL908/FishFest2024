@@ -11,6 +11,8 @@ public abstract class Collidable : MonoBehaviour
     protected Collider2D _collider;
     protected PlayerManager playerManager;
 
+    private bool _isAlive = true;
+
     void Start()
     {
         _rb= GetComponent<Rigidbody2D>();
@@ -20,10 +22,10 @@ public abstract class Collidable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3)
+        if (_isAlive && collision.gameObject.layer == 3)
         {
             // Prevent multiple bone collision
-            _collider.enabled = false;
+            _isAlive = false;
             HandleCollision(collision);
             HandleDeath();
             Destroy(gameObject);
