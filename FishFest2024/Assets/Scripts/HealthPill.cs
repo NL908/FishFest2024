@@ -9,5 +9,6 @@ public class HealthPill : Item
     protected override void HandleCollision(Collider2D collision)
     {
         playerManager.IncreaseMaxHP(maxHPIncreased);
+        if (AudioManager.instance) AudioManager.instance.PlaySound("item_get");
     }
 }
