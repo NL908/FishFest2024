@@ -5,7 +5,6 @@ using UnityEngine;
 public class StartingLineScript : MonoBehaviour
 {
     public GameObject startingZone;
-    public GameObject shopCanvas;
     protected PlayerManager playerManager;
 
     void Start()
@@ -19,7 +18,6 @@ public class StartingLineScript : MonoBehaviour
         {
             playerManager.GameStart();
             startingZone.SetActive(false);
-            shopCanvas.SetActive(false);
         }
     }
 }
