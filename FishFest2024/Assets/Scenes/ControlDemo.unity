@@ -818,7 +818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  healthLost: 5
+  healthLost: 0
+  explosionForce: {x: 5, y: 20}
 --- !u!58 &1195240219
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1793,6 +1794,10 @@ PrefabInstance:
     - target: {fileID: 996264170572651052, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171395729235786939, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
+      propertyPath: _jumpForce
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1232477676253831889, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: m_Layer
