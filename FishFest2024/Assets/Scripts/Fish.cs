@@ -7,7 +7,7 @@ public class Fish : Collidable
     [SerializeField]
     private float healthGained;
 
-    protected override void HandleCollision()
+    protected override void HandleCollision(Collider2D collision)
     {
         playerManager.HandleFishCollision(healthGained);
     }
