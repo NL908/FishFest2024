@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -105,6 +106,13 @@ public class PlayerManager : MonoBehaviour
             // Game Over
             Debug.Log("Game Over");
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Debug.Log("Game Over due to fall off screen");
+        // TODO: Add a black screen fade out animation before reload scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void HandleFishCollision(float healthGained)
