@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : Collidable
+public class Fish : CollidableEntity
 {
     [SerializeField]
     private float healthGained;

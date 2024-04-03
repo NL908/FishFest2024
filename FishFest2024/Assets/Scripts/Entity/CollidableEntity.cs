@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Collidable : MonoBehaviour
+public abstract class CollidableEntity : MonoBehaviour
 {
     [SerializeField]
     protected Vector2 velocity;
@@ -24,12 +24,11 @@ public abstract class Collidable : MonoBehaviour
     {
         if (_isAlive && collision.gameObject.layer == 3)
         {
-            // Prevent multiple bone collision
             _isAlive = false;
             HandleCollision(collision);
             HandleDeath();
             Destroy(gameObject);
-            Debug.Log(collision.gameObject.name);
+            Debug.Log(gameObject.name + " detects collision with " + collision.gameObject.name);
         }
     }
     protected abstract void HandleCollision(Collider2D collision);
