@@ -68,11 +68,6 @@ public class PlayerInputHandler : MonoBehaviour
         playerManager.isJumpPerformed = true;
     }
 
-    public void ResetMouseMovement()
-    {
-        mouseMovement = Vector2.zero;
-    }
-
     private void OnDrawGizmos()
     {
         if (Application.isPlaying && playerManager.isAiming)

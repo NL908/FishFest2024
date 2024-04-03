@@ -13,8 +13,10 @@ public class PlayerManager : MonoBehaviour
     AimCircleController aimCircleController;
 
     // Player Attributes
-    public int hp = 10;
-    public int maxHP = 10;
+    [SerializeField]
+    private float hp;
+    [SerializeField]
+    private float maxHP = 20;
 
     // HUD object
     public Text HPText;
@@ -32,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
         aimCircleController = GetComponentInChildren<AimCircleController>();
 
-        HPText.text = hp.ToString() + "/" + maxHP.ToString();
+        ChangeHP(maxHP);
     }
 
     private void Update()
@@ -60,7 +62,7 @@ public class PlayerManager : MonoBehaviour
             playerLocomotion.HandleMovement(playerInputHandler.mouseMovement);
 
             // Decrese HP when jump
-            ChangeHPForMove();
+            ChangeHP(hp - 1f);
         }
     }
 
@@ -88,26 +90,25 @@ public class PlayerManager : MonoBehaviour
         isAimTriggered = false;
         isJumpPerformed = false;
     }
-
-    public void ChangeHPForMove()
+    private void ChangeHP(float newHP)
     {
-        ChangeHP(hp - 1);
-    }
-
-    private void ChangeHP(int newHP)
-    {
-        hp  = newHP;
+        hp  = Mathf.Clamp(newHP, 0, maxHP);
         // Update the HP UI
         HPText.text = hp.ToString() + "/" + maxHP.ToString();
         RectTransform[] HPBarChildren = HPBar.GetComponentsInChildren<RectTransform>();
         RectTransform border = HPBarChildren[0];
         RectTransform fill = HPBarChildren[1];
-        fill.sizeDelta = new Vector2(hp * 1f / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
+        fill.sizeDelta = new Vector2(hp / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
         // HP detection
-        if (hp <= 0)
+        if (hp <= 0f)
         {
             // Game Over
             Debug.Log("Game Over");
         }
+    }
+
+    public void HandleFishCollision()
+    {
+        ChangeHP(hp + 1f);
     }
 }
