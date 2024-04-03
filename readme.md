@@ -1,7 +1,7 @@
 # GameJam
 
 ## Ideas
-###Game Loop:
+### Game Loop:
 1. Falling Transition 
   - Fish falling into the bottom
 2. Starting Scene
@@ -21,7 +21,7 @@
 5. Game Over (if health reaches 0 or player fail to catch a wall and hit the bottom of screen)
   - Return to step 1 transition
 
-###Menu:
+### Menu:
 Shop:
 - Half Transparent canvas
 - Interact via mouse click
