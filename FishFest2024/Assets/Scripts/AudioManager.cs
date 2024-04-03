@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [SerializeField] private Sound[] sounds;
+    [SerializeField] private SoundsScriptableObject soundsScriptableObject;
+    private Sound[] sounds;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             instance = this;
+            sounds = soundsScriptableObject.sounds;
             DontDestroyOnLoad(this);
         }
     }

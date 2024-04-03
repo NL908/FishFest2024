@@ -18,6 +18,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleJump(Vector2 moveDirection)
     {
+        AudioManager.instance.PlaySound("jump");
         ChangeVelocity(moveDirection * _jumpForce);
     }
 
