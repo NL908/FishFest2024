@@ -92,11 +92,11 @@
             ]
         },
         {
-            "name": "Pause",
+            "name": "Menu",
             "id": "8c094954-adb3-47d7-8a97-f8c0d9c9126c",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Restart",
                     "type": "Button",
                     "id": "a487ec58-c596-49d6-a5b1-3ad587456c54",
                     "expectedControlType": "Button",
@@ -109,11 +109,11 @@
                 {
                     "name": "",
                     "id": "4a4885a4-88e5-4315-b6d3-4a0e9dfd34fc",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

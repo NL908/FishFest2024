@@ -116,18 +116,14 @@ public class PlayerManager : MonoBehaviour
         fill.sizeDelta = new Vector2(hp / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
         // HP detection
         if (hp <= 0f)
-        {
-            // Game Over
-            Debug.Log("Game Over");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        { 
+            GameOver("Game Over due to no health");
         }
     }
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Game Over due to fall off screen");
-        // TODO: Add a black screen fade out animation before reload scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameOver("Game Over due to fall off screen");
     }
 
     public void HandleFishCollision(float healthGained)
@@ -152,5 +148,14 @@ public class PlayerManager : MonoBehaviour
     {
         maxHP += maxHPIncreased;
         ChangeHP(hp + maxHPIncreased);
+    }
+
+    public void GameOver(string reason)
+    {
+        Debug.Log(reason);
+        isActive = false;
+        InputManager.inputActions.Player.Disable();
+        Time.timeScale = 0;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
