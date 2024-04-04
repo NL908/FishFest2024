@@ -6,10 +6,12 @@ public abstract class CollidableEntity : MonoBehaviour
 {
     [SerializeField]
     protected Vector2 velocity;
+    [SerializeField] protected float baseSpawnRate = 1f;
 
     protected Rigidbody2D _rb;
     protected Collider2D _collider;
     protected PlayerManager playerManager;
+    
 
     private bool _isAlive = true;
 
@@ -30,6 +32,11 @@ public abstract class CollidableEntity : MonoBehaviour
             Destroy(gameObject);
             Debug.Log(gameObject.name + " detects collision with " + collision.gameObject.name);
         }
+    }
+
+    // Can be overridden in child classes
+    public float getSpawnRate(int currentScore) {
+        return baseSpawnRate;
     }
     protected abstract void HandleCollision(Collider2D collision);
     protected abstract void HandleDeath();

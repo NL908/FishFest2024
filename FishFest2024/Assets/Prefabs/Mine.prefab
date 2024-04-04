@@ -162,5 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
+  baseSpawnRate: 0.4
   healthLost: 0
   explosionForce: {x: 5, y: 20}
