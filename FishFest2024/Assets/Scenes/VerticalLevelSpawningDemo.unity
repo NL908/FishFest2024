@@ -458,8 +458,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingZone: {fileID: 1354533984}
-  spawnCheckDistance: 10
-  cameraViewTopDistance: 8
+  cameraTransform: {fileID: 1735320895}
+  spawnablesObject: {fileID: 11400000, guid: 1122c8144119e2843b24c854c185c071, type: 2}
+  spawnThresholdDistance: 3
+  spawnTopDistance: 9
   horizontalSpawnRangeMin: -3.5
   horizontalSpawnRangeMax: 3.5
 --- !u!4 &249419434
