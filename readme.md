@@ -38,6 +38,14 @@ Death Alterntaive
 ## TODO Items
 ### MVP
 - [X] Game Stage Scene
+- [ ] Complete Game Loop
+  - [ ] Transition Scene
+  - [ ] Game start and end transition
+- [ ] Game Content
+  - [ ] Enemey Spawning
+  - [ ] Item Spawning
+  - [ ] Score and currency
+- [ ] Title and Beginning Animation
 ### Visual
 - [ ] Slow time VFX
 - [ ] Mine/Fish death animation/sound
