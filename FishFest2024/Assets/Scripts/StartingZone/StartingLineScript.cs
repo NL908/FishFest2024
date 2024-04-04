@@ -16,8 +16,7 @@ public class StartingLineScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            playerManager.GameStart();
-            startingZone.SetActive(false);
+            GameManager.instance.GameStart();
         }
     }
 }
