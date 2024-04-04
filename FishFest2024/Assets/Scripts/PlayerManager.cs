@@ -91,7 +91,10 @@ public class PlayerManager : MonoBehaviour
         else
         {
             aimCircleController.DisableAim();
-            Time.timeScale = 1f;
+            if (!PauseMenu.instance.isPaused)
+            {
+                Time.timeScale = 1f;
+            }
         }
     }
 
@@ -167,5 +170,11 @@ public class PlayerManager : MonoBehaviour
     public void IntializePlayerStats()
     {
         ChangeHP(maxHP);
+    }
+
+    public void PauseGame()
+    {
+        isAiming = false;
+        PauseMenu.instance.Pause();
     }
 }

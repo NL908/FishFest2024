@@ -27,6 +27,8 @@ public class PlayerInputHandler : MonoBehaviour
         InputManager.inputActions.Player.JumpPress.performed += OnJumpPress;
 
         InputManager.inputActions.Player.JumpRelease.performed += OnJumpRelease;
+
+        InputManager.inputActions.Player.PauseGame.performed += OnPauseGame;
     }
 
     private void OnDisable()
@@ -60,12 +62,20 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnJumpRelease(InputAction.CallbackContext obj)
     {
-        // Compute the mouse movement delta
-        Vector2 endMousePos = mousePosition;
-        mouseMovement = endMousePos - startMousePos;
-        // Set flag
-        playerManager.isAiming = false;
-        playerManager.isJumpPerformed = true;
+        if (playerManager.isAiming)
+        {
+            // Compute the mouse movement delta
+            Vector2 endMousePos = mousePosition;
+            mouseMovement = endMousePos - startMousePos;
+            // Set flag
+            playerManager.isAiming = false;
+            playerManager.isJumpPerformed = true;
+        }
+    }
+
+    private void OnPauseGame(InputAction.CallbackContext obj)
+    {
+        playerManager.PauseGame();
     }
 
     private void OnDrawGizmos()
