@@ -11,7 +11,7 @@ public class ShopScript : MonoBehaviour
 
     private bool isShopOpened = false;
 
-    void Start()
+    void Awake()
     {
         _collider = GetComponent<Collider2D>();
         shopCanvasScript = _shopCanvas.GetComponent<ShopCanvasScript>();
