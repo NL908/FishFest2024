@@ -460,7 +460,7 @@ MonoBehaviour:
   startingZone: {fileID: 1354533984}
   cameraTransform: {fileID: 1735320895}
   spawnablesObject: {fileID: 11400000, guid: 1122c8144119e2843b24c854c185c071, type: 2}
-  spawnThresholdDistance: 3
+  spawnThresholdDistance: 1
   spawnTopDistance: 9
   horizontalSpawnRangeMin: -3.5
   horizontalSpawnRangeMax: 3.5

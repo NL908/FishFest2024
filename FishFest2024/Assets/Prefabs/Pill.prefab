@@ -162,5 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  baseSpawnRate: 0.1
+  baseSpawnRate: 0.05
+  spawnDistance: 10
   maxHPIncreased: 10

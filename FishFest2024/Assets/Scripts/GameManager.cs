@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject startingZone;
     [SerializeField] Transform cameraTransform;
     [SerializeField] SpawnablesList spawnablesObject;
-    [SerializeField] float spawnThresholdDistance = 3f;
+    // triggers spawn method when camera travels this amount of distance
+    [SerializeField] float spawnThresholdDistance = 1f;
     // Offset of the spawning item from the camera position to the top of the viewport
     [SerializeField] float spawnTopDistance = 9f;
     // items will spawn between horizontalSpawnRangeMin and horizontalSpawnRangeMax
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float horizontalSpawnRangeMax = 3.5f;
 
     private CollidableEntity[] spawnables;
+    // Array of spawn distance corresponding to the index of spawnables, it will be updated when camera moves, and when it is less than 0, the corresponding entity can be spawned
+    private float[] spawnablesDistance;
     private bool isGameActive = false;
     private Vector3 lastCameraPosition;
     private float distanceMovedUpwards = 0f;
@@ -32,6 +35,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             spawnables = spawnablesObject.spawnables;
+            spawnablesDistance = new float[spawnables.Length];
+            // Setup spawn distance array
+            for (int i = 0; i < spawnables.Length; i++) {
+                spawnablesDistance[i] = spawnables[i].getSpawnDistance();
+            }
             DontDestroyOnLoad(this);
         }
     }
@@ -55,6 +63,10 @@ public class GameManager : MonoBehaviour
         {
             distanceMovedUpwards += upwardsMovement;
             lastCameraPosition = cameraTransform.position;
+            // update spawn distance array
+            for (int i = 0; i < spawnables.Length; i++) {
+                spawnablesDistance[i] -= upwardsMovement;
+            }
         }
 
         // Check if the distance moved upwards exceeds the threshold
@@ -75,14 +87,21 @@ public class GameManager : MonoBehaviour
 
     void SpawnEntities()
     {
-        // Implementation of your spawning logic goes here
-        Debug.Log("Spawn Entities");
+        if (!isGameActive) return;
         for(int i = 0; i < spawnables.Length; i++) {
             CollidableEntity spawnable = spawnables[i];
-            // random number check to see if this item will be spawned
-            if (UnityEngine.Random.Range(0f, 1f) > spawnable.getSpawnRate(0)) {
+            //check if enough distance is passed to be able to spawn this entity
+            if (spawnablesDistance[i] > 0) {
                 continue;
             }
+            spawnablesDistance[i] = spawnable.getSpawnDistance();
+            // random number check to see if this item will be spawned
+            float rand = UnityEngine.Random.Range(0f, 1f);
+            if (rand > spawnable.getSpawnRate(i)) {
+                Debug.Log("spawning "+spawnable+" failed");
+                continue;
+            }
+
             Instantiate(spawnable, new Vector3(UnityEngine.Random.Range(horizontalSpawnRangeMin, horizontalSpawnRangeMax), cameraTransform.position.y + spawnTopDistance, 0), Quaternion.identity);
             break;
         }
