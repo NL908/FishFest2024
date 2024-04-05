@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             }
             spawnablesDistance[i] = spawnable.getSpawnDistance();
             // random number check to see if this item will be spawned
-            float rand = UnityEngine.Random.Range(0f, 1f);
+            float rand = UnityEngine.Random.value;
             if (rand > spawnable.getSpawnRate(i)) {
                 Debug.Log("spawning "+spawnable+" failed");
                 continue;
