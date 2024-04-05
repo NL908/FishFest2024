@@ -7,6 +7,8 @@ public class StartingLineScript : MonoBehaviour
     public GameObject startingZone;
     protected PlayerManager playerManager;
 
+    public bool isActive = false;
+
     void Start()
     {
         playerManager = PlayerManager.instance;
@@ -14,8 +16,9 @@ public class StartingLineScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3)
+        if (isActive && collision.gameObject.layer == 3)
         {
+            isActive = false;
             GameManager.instance.GameStart();
         }
     }

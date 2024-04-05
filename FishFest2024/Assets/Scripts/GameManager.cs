@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     protected PlayerManager playerManager;
     public GameObject startingZone;
     private Transform cameraTransform;
+
+    [SerializeField]
+    private GameObject _virtualCamera;
+
     [SerializeField] SpawnablesList spawnablesObject;
     // triggers spawn method when camera travels this amount of distance
     [SerializeField] float spawnThresholdDistance = 1f;
@@ -47,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        InputManager.ToggleActionMap(InputManager.inputActions.Player);
+        //InputManager.ToggleActionMap(InputManager.inputActions.Player);
         playerManager = PlayerManager.instance;
         // Initialize lastCameraPosition with the camera's starting position
         lastCameraPosition = cameraTransform.position;
@@ -84,6 +88,9 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         playerManager.GameStart();
         startingZone.SetActive(false);
+
+        // Activate virtual camera
+        _virtualCamera.SetActive(true);
     }
 
     void SpawnEntities()
@@ -106,5 +113,17 @@ public class GameManager : MonoBehaviour
             Instantiate(spawnable, new Vector3(UnityEngine.Random.Range(horizontalSpawnRangeMin, horizontalSpawnRangeMax), cameraTransform.position.y + spawnTopDistance, 0), Quaternion.identity);
             break;
         }
+    }
+
+    // This method is called when blob is land on ground from death falling animation
+    // Player was unable to control before
+    public void BlobLand()
+    {
+        // Activate Player input
+        InputManager.ToggleActionMap(InputManager.inputActions.Player);
+
+        // Enable starting line
+        StartingLineScript slc = startingZone.GetComponentInChildren<StartingLineScript>();
+        slc.isActive = true;
     }
 }

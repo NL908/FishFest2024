@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7158810278507991259}
   - component: {fileID: 3018929328653644514}
   m_Layer: 0
-  m_Name: FirstTimeFallingParticle
+  m_Name: FirstTimeLanding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

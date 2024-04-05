@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstLandingParticle : MonoBehaviour
+public class FirstLanding : MonoBehaviour
 {
     private ParticleSystem _landingParticle;
     private bool _isActive = true;
@@ -25,6 +25,7 @@ public class FirstLandingParticle : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Our Blob LANDS!
         if (_isActive && collision.tag == "Player")
         {
             _isActive = false;
@@ -34,6 +35,8 @@ public class FirstLandingParticle : MonoBehaviour
             float x = transform.InverseTransformPoint(collision.transform.position).x;
             shape.position = new Vector3(x, shapePos.y, shapePos.z);
             _landingParticle.Play();
+
+            GameManager.instance.BlobLand();
         }
     }
 }
