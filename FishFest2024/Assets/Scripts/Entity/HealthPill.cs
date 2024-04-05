@@ -11,4 +11,9 @@ public class HealthPill : Item
         playerManager.IncreaseMaxHP(maxHPIncreased);
         if (AudioManager.instance) AudioManager.instance.PlaySound("item_get");
     }
+
+    protected override void CalculateVelocity()
+    {
+        
+    }
 }

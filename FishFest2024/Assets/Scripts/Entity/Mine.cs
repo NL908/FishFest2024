@@ -9,6 +9,16 @@ public class Mine : CollidableEntity
     [SerializeField]
     private Vector2 explosionForce;
 
+    private float _creationTime;
+    [SerializeField]
+    private Vector2 movementMultiplier;
+
+    protected override void Start()
+    {
+        base.Start();
+        _creationTime = Time.time;
+    }
+
     protected override void HandleCollision(Collider2D collision)
     {
         playerManager.HandleMineCollision(healthLost);
@@ -24,5 +34,12 @@ public class Mine : CollidableEntity
     {
         // TODO: Play Death particle
         if (AudioManager.instance) AudioManager.instance.PlaySound("mine_explode");
+    }
+
+    protected override void CalculateVelocity()
+    {
+        // Mine will move in a horizontal 8-shape
+        velocity.x = Mathf.Clamp((Mathf.Sin((Time.time - _creationTime) / 2) * 2), -1, 1) * movementMultiplier.x;
+        velocity.y = Mathf.Cos(Time.time - _creationTime) * movementMultiplier.y;
     }
 }
