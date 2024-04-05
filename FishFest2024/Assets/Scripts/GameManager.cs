@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     protected PlayerManager playerManager;
     public GameObject startingZone;
-    [SerializeField] Transform cameraTransform;
+    private Transform cameraTransform;
     [SerializeField] SpawnablesList spawnablesObject;
     // triggers spawn method when camera travels this amount of distance
     [SerializeField] float spawnThresholdDistance = 1f;
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
             }
             DontDestroyOnLoad(this);
         }
+        cameraTransform = Camera.main.transform;
     }
 
     void Start()
