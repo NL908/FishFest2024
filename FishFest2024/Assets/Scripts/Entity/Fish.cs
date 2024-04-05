@@ -20,6 +20,8 @@ public class Fish : CollidableEntity
     {
         base.Start();
         _randomTime = Random.Range(0, 3);
+        // flip the sprite based on x direction
+        if (fishSwimDirection.x > 0) GetComponent<SpriteRenderer>().flipX = true;
     }
 
     protected override void HandleCollision(Collider2D collision)
