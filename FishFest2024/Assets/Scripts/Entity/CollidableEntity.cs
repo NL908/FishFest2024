@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class CollidableEntity : MonoBehaviour
 {
-    [SerializeField]
     protected Vector2 velocity;
     [SerializeField] protected float baseSpawnRate = 1f;
     // a spawn check of this entity can be performed after camera moves this much distance
@@ -17,11 +16,17 @@ public abstract class CollidableEntity : MonoBehaviour
 
     private bool _isAlive = true;
 
-    void Start()
+    protected virtual void Start()
     {
         _rb= GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         playerManager = PlayerManager.instance;
+    }
+
+    private void FixedUpdate()
+    {
+        CalculateVelocity();
+        _rb.velocity = velocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,4 +56,5 @@ public abstract class CollidableEntity : MonoBehaviour
     }
     protected abstract void HandleCollision(Collider2D collision);
     protected abstract void HandleDeath();
+    protected abstract void CalculateVelocity();
 }
