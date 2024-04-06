@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     private Transform cameraTransform;
 
     [SerializeField]
-    private GameObject _virtualCamera;
+    private CinemachineVirtualCamera _virtualCamera;
 
     [SerializeField]
     private TMP_Text _depthMeterText;
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
         // TODO: Add cursor lock and cursor focus
         UpdateScoreTextUI();
         // Setup oceanDeath
-        LockCamera lc = _virtualCamera.GetComponent<LockCamera>();
+        LockCamera lc = _virtualCamera.transform.GetComponent<LockCamera>();
         lc.maxYpos = oceanDepth;
         _wallSpriteRenderer.material.SetFloat("_OceanDepth", oceanDepth);
     }
@@ -118,7 +119,7 @@ public class GameManager : MonoBehaviour
         startingZone.SetActive(false);
 
         // Activate virtual camera
-        _virtualCamera.SetActive(true);
+        _virtualCamera.Follow = playerManager.transform;
     }
 
     void SpawnEntities()

@@ -430,11 +430,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2688559828825578914, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
   m_PrefabInstance: {fileID: 7771343338386235281}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &501948368 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2361066876137243302, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
-  m_PrefabInstance: {fileID: 6132738119630541532}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &612338734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,11 +1134,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b70fff7087c7d143993f56c3fa9e189, type: 3}
---- !u!1 &980327027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5770278969616606301, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
-  m_PrefabInstance: {fileID: 7771343338386235281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4362156734938268575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1550,22 +1540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823726672725873794, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 501948368}
     - target: {fileID: 7002054076582812809, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
       propertyPath: m_Name
       value: KeyComponents
       objectReference: {fileID: 0}
-    - target: {fileID: 7383694357236027628, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
-      propertyPath: oceanDepth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8699101190401697980, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
-      propertyPath: _shopCanvas
-      value: 
-      objectReference: {fileID: 980327027}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
