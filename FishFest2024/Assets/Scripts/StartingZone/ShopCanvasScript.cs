@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopCanvasScript : MonoBehaviour
 {
@@ -8,15 +9,17 @@ public class ShopCanvasScript : MonoBehaviour
     public GameObject CurrencyText;
 
     private PlayerManager playerManager;
+    private TMP_Text _currencyTextComp;
     void Awake()
     {
-        playerManager = PlayerManager.instance;    
+        playerManager = PlayerManager.instance;
+        _currencyTextComp = CurrencyText.GetComponent<TMP_Text>();
     }
 
     public void UpdateCurrency()
     {
         // TODO schange currency text
-        Debug.Log("Currently have: " + playerManager.currency.ToString());
+        _currencyTextComp.text = playerManager.currency.ToString();
     }
     public void OpenShop()
     {
