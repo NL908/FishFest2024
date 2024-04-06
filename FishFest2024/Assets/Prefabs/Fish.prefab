@@ -161,7 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4b3fa83e0b0b84bbf793dc283ebf32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0}
+  score: 10
   baseSpawnRate: 0.4
   spawnDistance: 2
   healthGained: 2
+  fishSwimDirection: {x: 0, y: 0}
+  swingMagnitude: 1
+  swingSpeed: 1

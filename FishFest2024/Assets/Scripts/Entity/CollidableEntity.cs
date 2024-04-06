@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class CollidableEntity : MonoBehaviour
 {
     protected Vector2 velocity;
+    // Award score when player collides with this object
+    [SerializeField] protected int score = 0;
     [SerializeField] protected float baseSpawnRate = 1f;
     // a spawn check of this entity can be performed after camera moves this much distance
     [SerializeField] protected float spawnDistance = 3f;
@@ -37,6 +39,7 @@ public abstract class CollidableEntity : MonoBehaviour
             HandleCollision(collision);
             HandleDeath();
             Destroy(gameObject);
+            GameManager.instance.AddScore(score);
             Debug.Log(gameObject.name + " detects collision with " + collision.gameObject.name);
         }
     }
