@@ -1139,6 +1139,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b70fff7087c7d143993f56c3fa9e189, type: 3}
+--- !u!1 &980327027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5770278969616606301, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
+  m_PrefabInstance: {fileID: 7771343338386235281}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4362156734938268575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1557,6 +1562,10 @@ PrefabInstance:
       propertyPath: oceanDepth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8699101190401697980, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
+      propertyPath: _shopCanvas
+      value: 
+      objectReference: {fileID: 980327027}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
