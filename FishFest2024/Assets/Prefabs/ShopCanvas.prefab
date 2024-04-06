@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShopOpen: 0
-  currencyText: {fileID: 5606044595020263730}
+  currencyText: {fileID: 1440187550759155888}
   warningPanel: {fileID: 1739206850622346372}
 --- !u!1 &6703551973943547485
 GameObject:

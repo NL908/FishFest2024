@@ -6,20 +6,18 @@ using TMPro;
 public class ShopCanvasScript : MonoBehaviour
 {
     public bool isShopOpen;
-    public GameObject currencyText;
+    public TMP_Text currencyText;
     public GameObject warningPanel;
 
     private PlayerManager playerManager;
-    private TMP_Text _currencyTextComp;
     void Awake()
     {
         playerManager = PlayerManager.instance;
-        _currencyTextComp = currencyText.GetComponent<TMP_Text>();
     }
 
     public void UpdateCurrency()
     {
-        _currencyTextComp.text = playerManager.currency.ToString();
+        currencyText.text = playerManager.currency.ToString();
     }
     public void OpenShop()
     {
