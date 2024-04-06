@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TMP_Text _depthMeterText;
+    [SerializeField]
+    private TMP_Text _scoreText;
 
     [SerializeField]
     private SpriteRenderer _wallSpriteRenderer;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     // The ocean depth at the starting location. 0 is surface
     public float oceanDepth = 1000;
+
+    public int score = 0;
 
     private CollidableEntity[] spawnables;
     // Array of spawn distance corresponding to the index of spawnables, it will be updated when camera moves, and when it is less than 0, the corresponding entity can be spawned
@@ -68,7 +72,7 @@ public class GameManager : MonoBehaviour
         // Initialize lastCameraPosition with the camera's starting position
         lastCameraPosition = cameraTransform.position;
         // TODO: Add cursor lock and cursor focus
-
+        UpdateScoreTextUI();
         // Setup oceanDeath
         LockCamera lc = _virtualCamera.GetComponent<LockCamera>();
         lc.maxYpos = oceanDepth;
@@ -149,6 +153,17 @@ public class GameManager : MonoBehaviour
         // Enable starting line
         StartingLineScript slc = startingZone.GetComponentInChildren<StartingLineScript>();
         slc.isActive = true;
+    }
+
+    public void UpdateScoreTextUI()
+    {
+        _scoreText.text = string.Format("Score: {0:0}", score);
+    }
+
+    public void AddScore(int value){
+        if (!isGameActive) return;
+        score += value;
+        UpdateScoreTextUI();
     }
 
     private void UpdateDepthTextUI()
