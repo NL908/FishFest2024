@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject _virtualCamera;
 
+    [SerializeField]
+    private TMP_Text _depthMeterText;
+
+    [SerializeField]
+    private SpriteRenderer _wallSpriteRenderer;
+
     [SerializeField] SpawnablesList spawnablesObject;
     // triggers spawn method when camera travels this amount of distance
     [SerializeField] float spawnThresholdDistance = 1f;
@@ -23,12 +30,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] float horizontalSpawnRangeMin = -3.5f;
     [SerializeField] float horizontalSpawnRangeMax = 3.5f;
 
+    // The ocean depth at the starting location. 0 is surface
+    public float oceanDepth = 1000;
+
     private CollidableEntity[] spawnables;
     // Array of spawn distance corresponding to the index of spawnables, it will be updated when camera moves, and when it is less than 0, the corresponding entity can be spawned
     private float[] spawnablesDistance;
     private bool isGameActive = false;
     private Vector3 lastCameraPosition;
     private float distanceMovedUpwards = 0f;
+
+    private bool _isPlayWin = false;
     void Awake()
     {
         if(instance != null && instance != this)
@@ -56,6 +68,11 @@ public class GameManager : MonoBehaviour
         // Initialize lastCameraPosition with the camera's starting position
         lastCameraPosition = cameraTransform.position;
         // TODO: Add cursor lock and cursor focus
+
+        // Setup oceanDeath
+        LockCamera lc = _virtualCamera.GetComponent<LockCamera>();
+        lc.maxYpos = oceanDepth;
+        _wallSpriteRenderer.material.SetFloat("_OceanDepth", oceanDepth);
     }
 
     void Update()
@@ -84,6 +101,13 @@ public class GameManager : MonoBehaviour
             SpawnEntities();
         }
     }
+
+    private void FixedUpdate()
+    {
+        UpdateDepthTextUI();
+        HandleFinishGame();
+    }
+
     public void GameStart() {
         isGameActive = true;
         playerManager.GameStart();
@@ -125,5 +149,24 @@ public class GameManager : MonoBehaviour
         // Enable starting line
         StartingLineScript slc = startingZone.GetComponentInChildren<StartingLineScript>();
         slc.isActive = true;
+    }
+
+    private void UpdateDepthTextUI()
+    {
+        float currentDepth = PlayerManager.instance.transform.position.y - oceanDepth;
+        _depthMeterText.text = string.Format("{0:0} m", currentDepth);
+    }
+
+    // Check if play is above the ocean (depth)
+    // If true, transite to finish game scene
+    private void HandleFinishGame()
+    {
+        if (PlayerManager.instance.transform.position.y > oceanDepth && !_isPlayWin)
+        {
+            // Player beats the game!
+            Debug.Log("Player Wins!");
+            _isPlayWin = true;
+            // TODO: Add logic here
+        }
     }
 }
