@@ -125,7 +125,17 @@ public class PlayerManager : MonoBehaviour
         // HP detection
         if (hp <= 0f)
         {
-            GameOver("Game Over due to no health");
+            InputManager.inputActions.Player.Disable();
+            isControllable = false;
+            isHealthDepleting = false;
+        }
+        else
+        {
+            if (GameManager.instance.isGameActive) {
+                InputManager.inputActions.Player.Enable();
+                isControllable = true;
+                isHealthDepleting = true;
+            }
         }
     }
 

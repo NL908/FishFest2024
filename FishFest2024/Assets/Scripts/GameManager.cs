@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     private CollidableEntity[] spawnables;
     // Array of spawn distance corresponding to the index of spawnables, it will be updated when camera moves, and when it is less than 0, the corresponding entity can be spawned
     private float[] spawnablesDistance;
-    private bool isGameActive = false;
+    public bool isGameActive = false;
     private Vector3 lastCameraPosition;
     private float distanceMovedUpwards = 0f;
 
