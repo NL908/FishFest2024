@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -31,8 +32,9 @@ public class PlayerManager : MonoBehaviour
     public float currency = 0;
 
     // HUD object
-    public Text HPText;
+    public TMP_Text HPText;
     public GameObject HPBar;
+    public TMP_Text currencyText;
 
     [Header("Player Flags")]
     public bool isAiming;
@@ -175,6 +177,7 @@ public class PlayerManager : MonoBehaviour
     public void IntializePlayerStats()
     {
         ChangeHP(maxHP);
+        ChangeCurrency(currency);
     }
 
     public void PauseGame()
@@ -202,10 +205,11 @@ public class PlayerManager : MonoBehaviour
     {
         bonusHP += amount;
         maxHP += amount;
-        ChangeHP(maxHP);
+        ChangeHP(hp + amount);
     }
     public void ChangeCurrency(float newAmount)
     {
         currency = Mathf.Clamp(newAmount, 0f, 999f);
+        currencyText.text = currency.ToString();
     }
 }
