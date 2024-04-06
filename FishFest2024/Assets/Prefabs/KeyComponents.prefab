@@ -1509,9 +1509,9 @@ GameObject:
   - component: {fileID: 7113925155648752888}
   - component: {fileID: 7210317909679865302}
   - component: {fileID: 8315310896931518124}
-  - component: {fileID: 3980050711824129881}
+  - component: {fileID: 2123613266745296274}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: ShopFloatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1670,7 +1670,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7210317909679865302}
   m_maskType: 0
---- !u!95 &3980050711824129881
+--- !u!95 &2123613266745296274
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -1680,7 +1680,7 @@ Animator:
   m_GameObject: {fileID: 6159385430193089113}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1b0c025d2c50de840bca1a52e62ec375, type: 2}
+  m_Controller: {fileID: 9100000, guid: a19b241a958b75a41a0370b441fef8ac, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
