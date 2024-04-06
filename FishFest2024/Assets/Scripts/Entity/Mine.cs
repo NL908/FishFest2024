@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mine : CollidableEntity
 {
     [SerializeField]
-    private float healthLost;
+    private float healthLost = 5;
     [SerializeField]
     private Vector2 explosionForce;
 

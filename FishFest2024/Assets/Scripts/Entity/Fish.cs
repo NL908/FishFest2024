@@ -5,7 +5,9 @@ using UnityEngine;
 public class Fish : CollidableEntity
 {
     [SerializeField]
-    private float healthGained;
+    private float healthGained = 1;
+    [SerializeField]
+    private float currencyGained = 1;
 
     [SerializeField]
     private Vector2 fishSwimDirection;
@@ -26,7 +28,7 @@ public class Fish : CollidableEntity
 
     protected override void HandleCollision(Collider2D collision)
     {
-        playerManager.HandleFishCollision(healthGained);
+        playerManager.HandleFishCollision(healthGained, currencyGained);
     }
 
     protected override void HandleDeath()

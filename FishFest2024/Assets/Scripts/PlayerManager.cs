@@ -22,6 +22,13 @@ public class PlayerManager : MonoBehaviour
     private float maxHP = DefaultHP;
     [SerializeField]
     private float hpDeleptionRate = 0.1f;
+    [SerializeField]
+    private float bonusHP = 0;
+    [SerializeField]
+    private float jumpHPCost = 1;
+    [SerializeField]
+    private float jumpHPReduction = 0;
+    public float currency = 0;
 
     // HUD object
     public Text HPText;
@@ -71,7 +78,8 @@ public class PlayerManager : MonoBehaviour
             // Decrese HP when jump
             if (isHealthDepleting)
             {
-                ChangeHP(hp - 1f);
+                float cost = jumpHPCost - jumpHPReduction;
+                ChangeHP(hp - cost);
             }
         }
     }
@@ -124,9 +132,11 @@ public class PlayerManager : MonoBehaviour
         GameOver("Game Over due to fall off screen");
     }
 
-    public void HandleFishCollision(float healthGained)
+    public void HandleFishCollision(float healthGained, float currencyGained)
     {
         ChangeHP(hp + healthGained);
+        ChangeCurrency(currency + currencyGained);
+
     }
     public void HandleMineCollision(float healthLost)
     {
@@ -145,11 +155,6 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion.ChangeVelocity(velocity);
     }
 
-    public void IncreaseMaxHP(float maxHPIncreased)
-    {
-        maxHP += maxHPIncreased;
-        ChangeHP(hp + maxHPIncreased);
-    }
 
     public void GameOver(string reason)
     {
@@ -176,5 +181,26 @@ public class PlayerManager : MonoBehaviour
     {
         isAiming = false;
         PauseMenu.instance.Pause();
+    }
+
+    // Player Attributes Related
+    public void IncreaseMaxHP(float maxHPIncreased)
+    {
+        maxHP += maxHPIncreased;
+        ChangeHP(hp + maxHPIncreased);
+    }
+    public void ReduceJumpCost(float amount)
+    {
+        jumpHPReduction += amount;
+    }
+    public void IncreaseBonusHP(float amount)
+    {
+        bonusHP += amount;
+        maxHP += amount;
+        ChangeHP(maxHP);
+    }
+    public void ChangeCurrency(float newAmount)
+    {
+        currency = Mathf.Clamp(newAmount, 0f, 999f);
     }
 }

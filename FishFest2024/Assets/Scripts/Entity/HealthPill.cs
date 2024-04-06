@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthPill : Item
 {
     [SerializeField]
-    private float maxHPIncreased;
+    private float maxHPIncreased = 5;
     protected override void HandleCollision(Collider2D collision)
     {
         playerManager.IncreaseMaxHP(maxHPIncreased);
