@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer _wallSpriteRenderer;
+
+    [SerializeField]
+    private LevelTransition _levelTransition;
 
     [SerializeField] SpawnablesList spawnablesObject;
     // triggers spawn method when camera travels this amount of distance
@@ -78,6 +82,8 @@ public class GameManager : MonoBehaviour
         LockCamera lc = _virtualCamera.transform.GetComponent<LockCamera>();
         lc.maxYpos = oceanDepth;
         _wallSpriteRenderer.material.SetFloat("_OceanDepth", oceanDepth);
+
+        
     }
 
     void Update()
@@ -120,6 +126,22 @@ public class GameManager : MonoBehaviour
 
         // Activate virtual camera
         _virtualCamera.Follow = playerManager.transform;
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+        isGameActive = false;
+        StartCoroutine(StartGameOverTransition());
+    }
+
+    private IEnumerator StartGameOverTransition()
+    {
+        _levelTransition.StartLoading();
+
+        yield return new WaitForSecondsRealtime(1f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void SpawnEntities()
