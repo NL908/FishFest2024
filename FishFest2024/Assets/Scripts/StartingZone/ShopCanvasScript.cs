@@ -8,15 +8,15 @@ public class ShopCanvasScript : MonoBehaviour
     public GameObject CurrencyText;
 
     private PlayerManager playerManager;
-    void Start()
+    void Awake()
     {
         playerManager = PlayerManager.instance;    
     }
 
     public void UpdateCurrency()
     {
-        TextMesh text = CurrencyText.GetComponent<TextMesh>();
-        text.text = playerManager.currency.ToString();
+        // TODO schange currency text
+        Debug.Log("Currently have: " + playerManager.currency.ToString());
     }
     public void OpenShop()
     {
@@ -41,7 +41,7 @@ public class ShopCanvasScript : MonoBehaviour
         float amount = 10;
         if (playerManager.currency < price)
         {
-            // TODO: show warning?
+            // TODO show warning
         }
         else
         {
