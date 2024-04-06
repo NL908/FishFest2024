@@ -14,14 +14,14 @@ public class FirstLanding : MonoBehaviour
     {
         _landingParticle = GetComponent<ParticleSystem>();
 
-        if (groundTransform == null)
-        {
-            Debug.LogWarning("The ground transform has not been set in " + gameObject.name + "!");
-        }
-        else
-        {
-            _landingParticle.collision.AddPlane(groundTransform);
-        }
+        //if (groundTransform == null)
+        //{
+        //    Debug.LogWarning("The ground transform has not been set in " + gameObject.name + "!");
+        //}
+        //else
+        //{
+        //    _landingParticle.collision.AddPlane(groundTransform);
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
