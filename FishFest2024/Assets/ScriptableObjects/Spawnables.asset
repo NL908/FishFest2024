@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Spawnables
   m_EditorClassIdentifier: 
   spawnables:
-  - {fileID: 371670340475133790, guid: b1c1b8135c0db014d98d8765dfe7e391, type: 3}
   - {fileID: 7526933732427144642, guid: 18fd40f0425b90b409c6d5fb1f04f884, type: 3}
   - {fileID: 375947619719208660, guid: 20beb935c7e04384593def8655466e46, type: 3}
   - {fileID: 8603722842976145764, guid: 2346ec0ea4dc172429c57446ba3bcf09, type: 3}
