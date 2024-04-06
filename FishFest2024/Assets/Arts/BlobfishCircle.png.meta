@@ -235,9 +235,9 @@ TextureImporter:
         rgba: 4286578943
     - name: bone_13
       guid: 22ced9af014baab43bbd2c6e8000d1bb
-      position: {x: 7.8444448, y: 8.466666, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-      length: 1.4444445
+      position: {x: 8, y: 8, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      length: 1.3822532
       parentId: -1
       color:
         serializedVersion: 2
@@ -345,7 +345,7 @@ TextureImporter:
       boneIndex[2]: 0
       boneIndex[3]: 0
     - weight[0]: 0.8273876
-      weight[1]: 0.17261249
+      weight[1]: 0.17261243
       weight[2]: 0
       weight[3]: 0
       boneIndex[0]: 0
