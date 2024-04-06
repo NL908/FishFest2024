@@ -189,6 +189,11 @@ public class PlayerManager : MonoBehaviour
         maxHP += maxHPIncreased;
         ChangeHP(hp + maxHPIncreased);
     }
+    public void IncreaseCurrency(float currencyGained)
+    {
+        currency += currencyGained;
+        ChangeCurrency(currency);
+    }
     public void ReduceJumpCost(float amount)
     {
         jumpHPReduction += amount;
