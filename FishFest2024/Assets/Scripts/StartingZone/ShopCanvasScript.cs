@@ -8,6 +8,9 @@ public class ShopCanvasScript : MonoBehaviour
     public bool isShopOpen;
     public TMP_Text currencyText;
     public GameObject warningPanel;
+    public SpriteRenderer shopSprite;
+    public Sprite shopOpenSprite;
+    public Sprite shopCloseSprite;
 
     private PlayerManager playerManager;
     void Awake()
@@ -24,6 +27,7 @@ public class ShopCanvasScript : MonoBehaviour
         Debug.Log("Shop Open");
         isShopOpen = true;
         gameObject.SetActive(true);
+        shopSprite.sprite = shopOpenSprite;
         InputManager.inputActions.Player.Disable();
         UpdateCurrency();
     }
@@ -33,6 +37,7 @@ public class ShopCanvasScript : MonoBehaviour
         Debug.Log("Shop Close");
         isShopOpen = false;
         gameObject.SetActive(false);
+        shopSprite.sprite = shopCloseSprite;
         InputManager.inputActions.Player.Enable();
     }
 

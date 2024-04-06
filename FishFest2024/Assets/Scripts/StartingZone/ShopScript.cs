@@ -9,8 +9,6 @@ public class ShopScript : MonoBehaviour
     private Collider2D _collider;
     private ShopCanvasScript shopCanvasScript;
 
-    private bool isShopOpened = false;
-
     void Awake()
     {
         _collider = GetComponent<Collider2D>();
