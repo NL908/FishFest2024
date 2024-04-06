@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 8164085473468031906}
   - component: {fileID: 6187150511534397116}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: WarningPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1850,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShopOpen: 0
-  CurrencyText: {fileID: 5606044595020263730}
+  currencyText: {fileID: 5606044595020263730}
+  warningPanel: {fileID: 1739206850622346372}
 --- !u!1 &6703551973943547485
 GameObject:
   m_ObjectHideFlags: 0

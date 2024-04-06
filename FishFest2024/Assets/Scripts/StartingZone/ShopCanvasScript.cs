@@ -6,19 +6,19 @@ using TMPro;
 public class ShopCanvasScript : MonoBehaviour
 {
     public bool isShopOpen;
-    public GameObject CurrencyText;
+    public GameObject currencyText;
+    public GameObject warningPanel;
 
     private PlayerManager playerManager;
     private TMP_Text _currencyTextComp;
     void Awake()
     {
         playerManager = PlayerManager.instance;
-        _currencyTextComp = CurrencyText.GetComponent<TMP_Text>();
+        _currencyTextComp = currencyText.GetComponent<TMP_Text>();
     }
 
     public void UpdateCurrency()
     {
-        // TODO schange currency text
         _currencyTextComp.text = playerManager.currency.ToString();
     }
     public void OpenShop()
@@ -38,13 +38,27 @@ public class ShopCanvasScript : MonoBehaviour
         InputManager.inputActions.Player.Enable();
     }
 
+    public void ShowWarning()
+    {
+        if (!warningPanel.activeSelf) {
+            warningPanel.SetActive(true);
+            StartCoroutine(HideWarningAfterDelay(3f));
+        }
+    }
+
+    IEnumerator HideWarningAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        warningPanel.SetActive(false);
+    }
+
     public void PurchaseItemHealthBoost()
     {
         float price = 10;
         float amount = 10;
         if (playerManager.currency < price)
         {
-            // TODO show warning
+            ShowWarning();
         }
         else
         {
@@ -60,7 +74,7 @@ public class ShopCanvasScript : MonoBehaviour
         float amount = 0.1f;
         if (playerManager.currency < price)
         {
-            // TODO: show warning?
+            ShowWarning();
         }
         else
         {
