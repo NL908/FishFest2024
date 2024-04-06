@@ -164,6 +164,7 @@ public class PlayerManager : MonoBehaviour
         InputManager.inputActions.Player.Disable();
         Time.timeScale = 0;
         // TODO: enter transition animation, and save any persistent stats
+        GameManager.instance.GameOver();
     }
 
     public void GameStart()
