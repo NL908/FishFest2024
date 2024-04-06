@@ -332,8 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  baseSpawnRate: 0.3
-  spawnDistance: 3
+  baseSpawnRate: 0.35
+  spawnDistance: 4
   healthLost: 5
-  explosionForce: {x: 5, y: 20}
+  explosionForce: {x: 5, y: 10}
   movementMultiplier: {x: 0.1, y: 0.1}
