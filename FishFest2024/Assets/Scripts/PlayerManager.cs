@@ -31,6 +31,9 @@ public class PlayerManager : MonoBehaviour
     private float jumpHPReduction = 0;
     public float currency = 0;
 
+    private float protectionStartTime = 10;
+    private float protectionTimer = 0;
+
     // HUD object
     public TMP_Text HPText;
     public GameObject HPBar;
@@ -42,6 +45,7 @@ public class PlayerManager : MonoBehaviour
     public bool isJumpPerformed; // True when jump is performed
     public bool isControllable = false;
     public bool isHealthDepleting = false;
+    public bool isProtectionBubble = false;
 
     private void Awake()
     {
@@ -59,6 +63,7 @@ public class PlayerManager : MonoBehaviour
         playerInputHandler.TickInput();
         HandleAimCircle();
         HandleHPDepletion();
+        HandleProtectionItem();
     }
 
     private void FixedUpdate()
@@ -78,7 +83,7 @@ public class PlayerManager : MonoBehaviour
             playerLocomotion.HandleJump(playerInputHandler.aimDirection);
 
             // Decrese HP when jump
-            if (isHealthDepleting)
+            if (isHealthDepleting && !isProtectionBubble)
             {
                 float cost = jumpHPCost - jumpHPReduction;
                 ChangeHP(hp - cost);
@@ -104,6 +109,22 @@ public class PlayerManager : MonoBehaviour
             if (!PauseMenu.instance.isPaused)
             {
                 Time.timeScale = 1f;
+            }
+        }
+    }
+
+    public void HandleProtectionItem()
+    {
+        if (isProtectionBubble)
+        {
+            if (protectionTimer > 0)
+            {
+                protectionTimer -= Time.deltaTime;
+            }
+            if (protectionTimer <= 0)
+            {
+                isProtectionBubble = false;
+                protectionTimer = 0;
             }
         }
     }
@@ -142,11 +163,14 @@ public class PlayerManager : MonoBehaviour
     }
     public void HandleMineCollision(float healthLost)
     {
-        ChangeHP(hp - healthLost);
+        if (!isProtectionBubble)
+        {
+            ChangeHP(hp - healthLost);
+        }
     }
     public void HandleHPDepletion()
     {
-        if (isHealthDepleting)
+        if (isHealthDepleting && !isProtectionBubble)
         {
             ChangeHP(hp - Time.deltaTime * hpDeleptionRate);
         }
@@ -212,5 +236,11 @@ public class PlayerManager : MonoBehaviour
     {
         currency = Mathf.Clamp(newAmount, 0f, 999f);
         currencyText.text = currency.ToString();
+    }
+
+    public void ActivateProtectionBubble()
+    {
+        isProtectItemUsed = true;
+        protectionTimer = protectionStartTime;
     }
 }
