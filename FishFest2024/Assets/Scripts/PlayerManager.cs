@@ -33,7 +33,6 @@ public class PlayerManager : MonoBehaviour
 
     private float protectionStartTime = 10;
     private float protectionTimer = 0;
-    public Sprite[] hpSprites;
 
     // HUD object
     public TMP_Text HPText;
@@ -127,8 +126,7 @@ public class PlayerManager : MonoBehaviour
             {
                 isProtectionBubble = false;
                 protectionTimer = 0;
-                Image hpImage = HPBar.GetComponentsInChildren<Image>()[1];
-                hpImage.sprite = hpSprites[0];
+                ToggleHPBubble(false);
             }
         }
     }
@@ -168,6 +166,12 @@ public class PlayerManager : MonoBehaviour
     private void OnBecameInvisible()
     {
         GameOver("Game Over due to fall off screen");
+    }
+
+    private void ToggleHPBubble(bool status)
+    {
+        GameObject hpBubble = HPBar.transform.GetChild(2).gameObject;
+        hpBubble.SetActive(status);
     }
 
     public void HandleFishCollision(float healthGained, float currencyGained)
@@ -256,8 +260,7 @@ public class PlayerManager : MonoBehaviour
     public void ActivateProtectionBubble()
     {
         isProtectionBubble = true;
-        protectionTimer = protectionStartTime;
-        Image hpImage = HPBar.GetComponentsInChildren<Image>()[1];
-        hpImage.sprite = hpSprites[1];
+        protectionTimer = protectionStartTime; 
+        ToggleHPBubble(true);
     }
 }
