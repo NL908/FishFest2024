@@ -37,6 +37,7 @@ public class ShopCanvasScript : MonoBehaviour
         Debug.Log("Shop Close");
         isShopOpen = false;
         gameObject.SetActive(false);
+        warningPanel.SetActive(false);
         shopSprite.sprite = shopCloseSprite;
         InputManager.inputActions.Player.Enable();
     }
