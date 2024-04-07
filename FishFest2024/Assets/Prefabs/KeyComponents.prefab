@@ -1127,6 +1127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingZone: {fileID: 4658184760589958958}
   _virtualCamera: {fileID: 5823726672725873794}
+  _aboveWaterBackgruondPrefab: {fileID: 3874098217698526793, guid: 39dd5572240c722488df40e4cc8bcc62, type: 3}
   _depthMeterText: {fileID: 6403379437666986699}
   _scoreText: {fileID: 9086326304003242849}
   _wallSpriteRenderer: {fileID: 5474021647888355262}
