@@ -62,6 +62,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JumpCancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""70139bde-b48a-4997-a130-aee9f234f1d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72a715f4-4105-4b53-8700-0ac777d5ec53"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpCancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -198,6 +218,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Player_JumpPress = m_Player.FindAction("JumpPress", throwIfNotFound: true);
         m_Player_JumpRelease = m_Player.FindAction("JumpRelease", throwIfNotFound: true);
         m_Player_PauseGame = m_Player.FindAction("PauseGame", throwIfNotFound: true);
+        m_Player_JumpCancel = m_Player.FindAction("JumpCancel", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Restart = m_Menu.FindAction("Restart", throwIfNotFound: true);
@@ -269,6 +290,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_JumpPress;
     private readonly InputAction m_Player_JumpRelease;
     private readonly InputAction m_Player_PauseGame;
+    private readonly InputAction m_Player_JumpCancel;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -277,6 +299,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @JumpPress => m_Wrapper.m_Player_JumpPress;
         public InputAction @JumpRelease => m_Wrapper.m_Player_JumpRelease;
         public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
+        public InputAction @JumpCancel => m_Wrapper.m_Player_JumpCancel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -298,6 +321,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @PauseGame.started += instance.OnPauseGame;
             @PauseGame.performed += instance.OnPauseGame;
             @PauseGame.canceled += instance.OnPauseGame;
+            @JumpCancel.started += instance.OnJumpCancel;
+            @JumpCancel.performed += instance.OnJumpCancel;
+            @JumpCancel.canceled += instance.OnJumpCancel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -314,6 +340,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @PauseGame.started -= instance.OnPauseGame;
             @PauseGame.performed -= instance.OnPauseGame;
             @PauseGame.canceled -= instance.OnPauseGame;
+            @JumpCancel.started -= instance.OnJumpCancel;
+            @JumpCancel.performed -= instance.OnJumpCancel;
+            @JumpCancel.canceled -= instance.OnJumpCancel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -429,6 +458,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnJumpPress(InputAction.CallbackContext context);
         void OnJumpRelease(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnJumpCancel(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

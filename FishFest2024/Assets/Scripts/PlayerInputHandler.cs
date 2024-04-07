@@ -28,6 +28,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         InputManager.inputActions.Player.JumpRelease.performed += OnJumpRelease;
 
+        InputManager.inputActions.Player.JumpCancel.performed += OnJumpCancel;
+
         InputManager.inputActions.Player.PauseGame.performed += OnPauseGame;
     }
 
@@ -71,6 +73,12 @@ public class PlayerInputHandler : MonoBehaviour
             playerManager.isAiming = false;
             playerManager.isJumpPerformed = true;
         }
+    }
+
+    private void OnJumpCancel(InputAction.CallbackContext obj)
+    {
+        // Set flag
+        playerManager.isAiming = false;
     }
 
     private void OnPauseGame(InputAction.CallbackContext obj)
