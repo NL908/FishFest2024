@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProtectionBubble : Item
 {
-    [SerializeField]
-    private float maxHPIncreased = 5;
     protected override void HandleCollision(Collider2D collision)
     {
         playerManager.ActivateProtectionBubble();

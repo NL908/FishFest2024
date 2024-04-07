@@ -1062,6 +1062,7 @@ MonoBehaviour:
   horizontalSpawnRangeMax: 3.5
   oceanDepth: 100
   score: 0
+  isGameActive: 0
 --- !u!1 &5241539403526064598
 GameObject:
   m_ObjectHideFlags: 0

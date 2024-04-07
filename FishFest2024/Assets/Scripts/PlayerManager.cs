@@ -33,11 +33,12 @@ public class PlayerManager : MonoBehaviour
 
     private float protectionStartTime = 10;
     private float protectionTimer = 0;
+    public Sprite[] hpSprites;
 
     // HUD object
     public TMP_Text HPText;
-    public GameObject HPBar;
     public TMP_Text currencyText;
+    public GameObject HPBar;
 
     [Header("Player Flags")]
     public bool isAiming;
@@ -46,6 +47,7 @@ public class PlayerManager : MonoBehaviour
     public bool isControllable = false;
     public bool isHealthDepleting = false;
     public bool isProtectionBubble = false;
+
 
     private void Awake()
     {
@@ -125,6 +127,8 @@ public class PlayerManager : MonoBehaviour
             {
                 isProtectionBubble = false;
                 protectionTimer = 0;
+                Image hpImage = HPBar.GetComponentsInChildren<Image>()[1];
+                hpImage.sprite = hpSprites[0];
             }
         }
     }
@@ -138,10 +142,10 @@ public class PlayerManager : MonoBehaviour
     {
         hp = Mathf.Clamp(newHP, 0, maxHP);
         // Update the HP UI
+        RectTransform[] hpRects = HPBar.GetComponentsInChildren<RectTransform>();
+        RectTransform border = hpRects[0];
+        RectTransform fill = hpRects[1];
         HPText.text = System.Math.Round(hp, 1).ToString() + "/" + System.Math.Round(maxHP, 1).ToString();
-        RectTransform[] HPBarChildren = HPBar.GetComponentsInChildren<RectTransform>();
-        RectTransform border = HPBarChildren[0];
-        RectTransform fill = HPBarChildren[1];
         fill.sizeDelta = new Vector2(hp / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
         // HP detection
         if (hp <= 0f)
@@ -152,7 +156,8 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            if (GameManager.instance.isGameActive) {
+            if (GameManager.instance.isGameActive)
+            {
                 InputManager.inputActions.Player.Enable();
                 isControllable = true;
                 isHealthDepleting = true;
@@ -252,5 +257,7 @@ public class PlayerManager : MonoBehaviour
     {
         isProtectionBubble = true;
         protectionTimer = protectionStartTime;
+        Image hpImage = HPBar.GetComponentsInChildren<Image>()[1];
+        hpImage.sprite = hpSprites[1];
     }
 }
