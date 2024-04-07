@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7804580645099553618}
   - component: {fileID: 1395306974563631212}
   - component: {fileID: 7827499369973155105}
-  - component: {fileID: 8718135959601056741}
   - component: {fileID: 375947619719208660}
+  - component: {fileID: 8357258234730722089}
   m_Layer: 0
   m_Name: Pill
   m_TagString: Untagged
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7381175710143836849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.0045511895, y: 0.0039114696, z: 0.0033855385, w: 0.9999763}
   m_LocalPosition: {x: 6.37, y: -3.51, z: 0}
   m_LocalScale: {x: 3.4179, y: 3.4179, z: 3.4179}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.52, y: 0.45, z: 0.39}
 --- !u!212 &1395306974563631212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,8 +114,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &8718135959601056741
-CircleCollider2D:
+--- !u!114 &375947619719208660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381175710143836849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d91d71dc6aa7c43a075e54ff049329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  baseSpawnRate: 0.05
+  spawnDistance: 10
+  maxHPIncreased: 10
+--- !u!70 &8357258234730722089
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,21 +163,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.16
---- !u!114 &375947619719208660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7381175710143836849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d91d71dc6aa7c43a075e54ff049329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  baseSpawnRate: 0.05
-  spawnDistance: 10
-  maxHPIncreased: 10
+  m_Size: {x: 0.5, y: 0.5}
+  m_Direction: 1
