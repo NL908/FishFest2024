@@ -86,10 +86,4 @@ public class ShopCanvasScript : MonoBehaviour
             UpdateCurrency();
         }
     }
-
-    public void PurchaseItemBoost()
-    {
-        UpdateCurrency();
-
-    }
 }

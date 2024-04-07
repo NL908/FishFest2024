@@ -250,7 +250,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ActivateProtectionBubble()
     {
-        isProtectItemUsed = true;
+        isProtectionBubble = true;
         protectionTimer = protectionStartTime;
     }
 }
