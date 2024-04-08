@@ -278,7 +278,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void ReduceJumpCost(float amount)
     {
-        jumpHPReduction += amount;
+        jumpHPReduction = Mathf.Clamp(jumpHPReduction + amount, 0, jumpHPCost - 0.1f);
     }
     public void IncreaseBonusHP(float amount)
     {

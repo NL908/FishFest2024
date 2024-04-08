@@ -88,7 +88,7 @@ public class ShopCanvasScript : MonoBehaviour
             UpdateCurrency();
         }
     }
-    [ContextMenu("BOOST")]
+
     public void PurchaseItemJumpDistance()
     {
         float price = 50;

@@ -335,6 +335,6 @@ MonoBehaviour:
   baseSpawnRate: 0.35
   endSpawnRate: 0.6
   spawnDistance: 4
-  healthLost: 30
+  healthLost: 15
   explosionForce: {x: 6, y: 12}
   movementMultiplier: {x: 0.1, y: 0.1}
