@@ -164,11 +164,10 @@ public class PlayerManager : MonoBehaviour
     {
         hp = Mathf.Clamp(newHP, 0, maxHP);
         // Update the HP UI
-        RectTransform[] hpRects = HPBar.GetComponentsInChildren<RectTransform>();
-        RectTransform border = hpRects[0];
-        RectTransform fill = hpRects[1];
+        Image[] hpImages = HPBar.GetComponentsInChildren<Image>();
         HPText.text = System.Math.Round(hp, 1).ToString() + "/" + System.Math.Round(maxHP, 1).ToString();
-        fill.sizeDelta = new Vector2(hp / maxHP * border.sizeDelta.x, fill.sizeDelta.y);
+        Image fill = hpImages[1];
+        fill.fillAmount = hp / maxHP;
         // HP detection
         if (hp <= 0f)
         {
