@@ -48,15 +48,18 @@ public class Fish : CollidableEntity
 
     void ChangeSpriteColorToRandom()
     {
-        // Get the SpriteRenderer component from the entity
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            // Generate a random color
-            Color randomColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-            
-            // Set the sprite renderer's color to the newly generated random color
-            spriteRenderer.color = randomColor;
+            float[] hues = new float[] { 0f, 0.05f, 0.1f, 0.15f, 0.65f, 0.7f }; 
+            float hue = hues[Random.Range(0, hues.Length)];
+
+            float saturation = Random.Range(0.95f, 1f); 
+            float brightness = Random.Range(0.95f, 1f); 
+
+            Color tropicalColor = Color.HSVToRGB(hue, saturation, brightness);
+
+            spriteRenderer.color = tropicalColor;
         }
     }
 }
