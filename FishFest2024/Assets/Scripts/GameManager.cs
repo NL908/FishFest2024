@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] bool isShaking = false;
+    [SerializeField] float shakeDuration = 0.5f;
 
     [SerializeField]
     private GameObject _aboveWaterBackgruondPrefab;
@@ -188,7 +190,7 @@ public class GameManager : MonoBehaviour
     private void UpdateDepthTextUI()
     {
         float currentDepth = PlayerManager.instance.transform.position.y - oceanDepth;
-        _depthMeterText.text = string.Format("{0:0} m", currentDepth);
+        _depthMeterText.text = string.Format("{0:0} m", currentDepth * (1500 / oceanDepth));
     }
 
     // Check if play is above the ocean (depth)
@@ -208,5 +210,26 @@ public class GameManager : MonoBehaviour
             // Load Scene
             _endGameHandler.StartEndGame();
         }
+    }
+
+    public void TriggerScreenShake()
+    {
+        if (!isShaking)
+        {
+            isShaking = true;
+            CinemachineBasicMultiChannelPerlin noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            noise.m_AmplitudeGain = 1.0f; // Set the amplitude to 1 for the shake effect
+
+            // Start the coroutine to reset the shake after a duration
+            StartCoroutine(ResetScreenShake());
+        }
+    }
+    private IEnumerator ResetScreenShake()
+    {
+        yield return new WaitForSeconds(shakeDuration);
+
+        CinemachineBasicMultiChannelPerlin noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        noise.m_AmplitudeGain = 0f; // Reset the amplitude to 0
+        isShaking = false;
     }
 }
