@@ -248,9 +248,12 @@ public class PlayerManager : MonoBehaviour
     }
     public void IncreaseBonusHP(float amount)
     {
-        bonusHP += amount;
-        maxHP += amount;
-        ChangeHP(hp + amount);
+        if (bonusHP < DefaultHP)
+        {
+            bonusHP += amount;
+            maxHP += amount;
+            ChangeHP(hp + amount);
+        }
     }
     public void ChangeCurrency(float newAmount)
     {
