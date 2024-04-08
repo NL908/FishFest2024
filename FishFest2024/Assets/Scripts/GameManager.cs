@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject startingZone;
     private Transform cameraTransform;
 
+    private UnderWaterEffectHandler _underWaterEffectHandler;
+
     [SerializeField]
     private CinemachineVirtualCamera _virtualCamera;
 
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         cameraTransform = Camera.main.transform;
+        _underWaterEffectHandler = GetComponent<UnderWaterEffectHandler>();
     }
 
     void Start()
@@ -201,6 +204,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player Wins!");
             _isPlayWin = true;
             // TODO: Add logic here
+            _underWaterEffectHandler.DisableEffect();
+            Time.timeScale = 0.1f;
+            InputManager.inputActions.Player.Disable();
+            // Load Scene
         }
     }
 }

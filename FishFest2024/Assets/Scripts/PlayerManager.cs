@@ -46,6 +46,7 @@ public class PlayerManager : MonoBehaviour
     public bool isControllable = false;
     public bool isHealthDepleting = false;
     public bool isProtectionBubble = false;
+    public bool isGameOverIfFallOffScreen = true;
 
 
     private void Awake()
@@ -164,7 +165,8 @@ public class PlayerManager : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        GameOver("Game Over due to fall off screen");
+        if (isGameOverIfFallOffScreen)
+            GameOver("Game Over due to fall off screen");
     }
 
     private void ToggleHPBubble(bool status)
