@@ -6,6 +6,8 @@ using TMPro;
 using Cinemachine;
 using UnityEngine.SceneManagement;
 using EasyTransition;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,9 +21,14 @@ public class GameManager : MonoBehaviour
     private EndGameHandler _endGameHandler;
 
     [SerializeField]
+    private Volume _volume;
+
+    [SerializeField]
     private CinemachineVirtualCamera _virtualCamera;
     [SerializeField] bool isShaking = false;
     [SerializeField] float shakeDuration = 0.5f;
+    [SerializeField] float vignetteFadeInDuration = 0.5f;
+    [SerializeField] float vignetteFadeOutDuration = 1f;
 
     [SerializeField]
     private GameObject _aboveWaterBackgruondPrefab;
@@ -190,7 +197,7 @@ public class GameManager : MonoBehaviour
     private void UpdateDepthTextUI()
     {
         float currentDepth = PlayerManager.instance.transform.position.y - oceanDepth;
-        _depthMeterText.text = string.Format("{0:0} m", currentDepth);
+        _depthMeterText.text = string.Format("{0:0} m", currentDepth * (1500 / oceanDepth));
     }
 
     // Check if play is above the ocean (depth)
@@ -224,6 +231,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(ResetScreenShake());
         }
     }
+
     private IEnumerator ResetScreenShake()
     {
         yield return new WaitForSeconds(shakeDuration);
@@ -231,5 +239,37 @@ public class GameManager : MonoBehaviour
         CinemachineBasicMultiChannelPerlin noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         noise.m_AmplitudeGain = 0f; // Reset the amplitude to 0
         isShaking = false;
+    }
+
+    public IEnumerator TriggerVignette()
+    {
+        Vignette vignette;
+
+        if (_volume.profile.TryGet<Vignette>(out vignette))
+        {
+            float elapsedTime = 0f;
+            while (elapsedTime < vignetteFadeInDuration)
+            {
+                elapsedTime += Time.fixedDeltaTime;
+                //Debug.Log(elapsedTime);
+
+                float intensity = Mathf.Lerp(0, 0.5f, (elapsedTime / vignetteFadeInDuration));
+                vignette.intensity.Override(intensity);
+
+                yield return null;
+            }
+
+            elapsedTime = 0f;
+            while (elapsedTime < vignetteFadeOutDuration)
+            {
+                elapsedTime += Time.fixedDeltaTime;
+                //Debug.Log(elapsedTime);
+
+                float intensity = Mathf.Lerp(0.5f, 0, (elapsedTime / vignetteFadeOutDuration));
+                vignette.intensity.Override(intensity);
+
+                yield return null;
+            }
+        }
     }
 }

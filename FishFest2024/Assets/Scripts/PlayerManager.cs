@@ -210,7 +210,8 @@ public class PlayerManager : MonoBehaviour
         {
             ChangeHP(hp - healthLost);
         }
-        GameManager.instance.TriggerScreenShake();
+        //GameManager.instance.TriggerScreenShake();
+        StartCoroutine(GameManager.instance.TriggerVignette());
     }
 
     public void HandleHPDepletion()
