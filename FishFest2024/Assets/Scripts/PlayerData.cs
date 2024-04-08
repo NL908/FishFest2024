@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
     public float bonusHP;
     public float jumpHPReduction;
     public float currency;
+    public float jumpDistanceMultiplier;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -20,22 +21,11 @@ public class PlayerData : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SavePlayerData(float currency, float bonusHP, float jumpHPReduction)
+    public void SavePlayerData(float currency, float bonusHP, float jumpHPReduction, float jumpDistanceMultiplier)
     {
         this.currency = currency;
         this.bonusHP = bonusHP;
         this.jumpHPReduction = jumpHPReduction;
+        this.jumpDistanceMultiplier = jumpDistanceMultiplier;
     }
 }
