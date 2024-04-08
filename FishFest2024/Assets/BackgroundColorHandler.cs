@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BackgroundColorHandler : MonoBehaviour
 {
-    private GameManager _gameManager;
-
     [SerializeField]
     private SpriteRenderer backgroundsr;
 
@@ -21,15 +19,9 @@ public class BackgroundColorHandler : MonoBehaviour
     [SerializeField]
     private Color _endColor;
 
-    private void Awake()
-    {
-        _gameManager = GetComponent<GameManager>();
-
-        oceanDepth = _gameManager.oceanDepth;
-    }
-
     private void Start()
     {
+        oceanDepth = GameManager.instance.oceanDepth;
         _startColor = backgroundsr.color;
     }
 

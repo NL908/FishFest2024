@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Transform cameraTransform;
 
     private UnderWaterEffectHandler _underWaterEffectHandler;
+    private EndGameHandler _endGameHandler;
 
     [SerializeField]
     private CinemachineVirtualCamera _virtualCamera;
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
     private Vector3 lastCameraPosition;
     private float distanceMovedUpwards = 0f;
 
-    private bool _isPlayWin = false;
+    public bool isPlayWin = false;
     void Awake()
     {
         if(instance != null && instance != this)
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         }
         cameraTransform = Camera.main.transform;
         _underWaterEffectHandler = GetComponent<UnderWaterEffectHandler>();
+        _endGameHandler = GetComponent<EndGameHandler>();
     }
 
     void Start()
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreTextUI();
         // Setup oceanDeath
         LockCamera lc = _virtualCamera.transform.GetComponent<LockCamera>();
-        lc.maxYpos = oceanDepth;
+        lc.maxYpos = oceanDepth + 1f;
         _wallMaterial.SetFloat("_OceanDepth", oceanDepth);
 
         Vector3 aboveWaterBkgPos = new(0, oceanDepth, 5);
@@ -200,16 +202,18 @@ public class GameManager : MonoBehaviour
     // If true, transite to finish game scene
     private void HandleFinishGame()
     {
-        if (PlayerManager.instance.transform.position.y > oceanDepth && !_isPlayWin)
+        if (PlayerManager.instance.transform.position.y > oceanDepth && !isPlayWin)
         {
             // Player beats the game!
             Debug.Log("Player Wins!");
-            _isPlayWin = true;
+            isPlayWin = true;
             // TODO: Add logic here
             _underWaterEffectHandler.DisableEffect();
             Time.timeScale = 0.1f;
             InputManager.inputActions.Player.Disable();
+            PlayerManager.instance.isGameOverIfFallOffScreen = false;
             // Load Scene
+            _endGameHandler.StartEndGame();
         }
     }
 }
