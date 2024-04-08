@@ -59,7 +59,7 @@ public class ShopCanvasScript : MonoBehaviour
 
     public void PurchaseItemHealthBoost()
     {
-        float price = 10;
+        float price = 20;
         float amount = 10;
         if (playerManager.currency < price)
         {
@@ -75,7 +75,7 @@ public class ShopCanvasScript : MonoBehaviour
 
     public void PurchaseItemJumpCostReduction()
     {
-        float price = 10;
+        float price = 30;
         float amount = 0.1f;
         if (playerManager.currency < price)
         {
