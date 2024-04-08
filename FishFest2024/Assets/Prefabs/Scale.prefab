@@ -163,5 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   baseSpawnRate: 0.05
+  endSpawnRate: 0.1
   spawnDistance: 6
   currencyGained: 5

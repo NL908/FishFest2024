@@ -212,8 +212,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (isHealthDepleting && !isProtectionBubble)
         {
-            float depthScalar = GetDepthScalar();
-            float mult = startHPDepletionMul * (1 - depthScalar) + endHPDepletionMult * depthScalar;
+            float factor = GetDepthFactor();
+            float mult = startHPDepletionMul * (1 - factor) + endHPDepletionMult * factor;
             ChangeHP(hp - Time.deltaTime * hpDeleptionRate * mult);
         }
     }
@@ -300,7 +300,7 @@ public class PlayerManager : MonoBehaviour
         playerData.SavePlayerData(currency, bonusHP, jumpHPReduction);
     }
 
-    private float GetDepthScalar()
+    public float GetDepthFactor()
     {
         // 0 at bottom, 1 at top
         return Mathf.Max(0.0f, transform.position.y) / GameManager.instance.oceanDepth;
