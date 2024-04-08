@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 100
-  baseSpawnRate: 0.1
+  baseSpawnRate: 0.02
   spawnDistance: 5
