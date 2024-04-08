@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private SoundsScriptableObject soundsScriptableObject;
     private Sound[] sounds;
 
+    private bool isMenuPlaying = false;
+    private bool isStagePlaying = false;
+
     void Awake()
     {
         if(instance != null && instance != this)
@@ -19,20 +22,14 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             sounds = soundsScriptableObject.sounds;
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                GameObject soundObject = new GameObject("Sound_" + i + "_" + sounds[i].soundName);
+                sounds[i].SetSource(soundObject.AddComponent<AudioSource>());
+                soundObject.transform.parent = gameObject.transform;
+            }
             DontDestroyOnLoad(this);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        for(int i = 0; i < sounds.Length; i++)
-        {
-            GameObject soundObject = new GameObject("Sound_" + i + "_" + sounds[i].soundName);
-            sounds[i].SetSource(soundObject.AddComponent<AudioSource>());
-            soundObject.transform.parent = gameObject.transform;
-        }
-        PlaySound("stage_bgm");
     }
 
     public void PlaySound(string name)
@@ -86,4 +83,28 @@ public class AudioManager : MonoBehaviour
         }
         Debug.LogWarning("AudioManger: Sound not found in list: " + name);
     }
+
+    #region Background music switch
+    public void PlayMenuMusic()
+    {
+        if (!isMenuPlaying)
+        {
+            isMenuPlaying = true;
+            isStagePlaying = false;
+            AudioManager.instance.PlaySound("menu_bgm");
+            AudioManager.instance.StopSound("stage_bgm");
+        }
+    }
+
+    public void PlayStageMusic()
+    {
+        if (!isStagePlaying)
+        {
+            isStagePlaying = true;
+            isMenuPlaying = false;
+            AudioManager.instance.PlaySound("stage_bgm");
+            AudioManager.instance.StopSound("menu_bgm");
+        }
+    }
+    #endregion
 }

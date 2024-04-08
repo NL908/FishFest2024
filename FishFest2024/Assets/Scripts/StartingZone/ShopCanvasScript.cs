@@ -88,4 +88,20 @@ public class ShopCanvasScript : MonoBehaviour
             UpdateCurrency();
         }
     }
+
+    public void PurchaseItemJumpDistance()
+    {
+        float price = 50;
+        float amount = 0.1f;
+        if (playerManager.currency < price)
+        {
+            ShowWarning();
+        }
+        else
+        {
+            playerManager.ChangeCurrency(playerManager.currency - price);
+            playerManager.IncreaseJumpDistance(amount);
+            UpdateCurrency();
+        }
+    }
 }

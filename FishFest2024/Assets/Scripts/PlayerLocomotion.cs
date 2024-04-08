@@ -16,9 +16,9 @@ public class PlayerLocomotion : MonoBehaviour
         _playerManager = GetComponent<PlayerManager>();
     }
 
-    public void HandleJump(Vector2 moveDirection)
+    public void HandleJump(Vector2 moveDirection, float forceMulltiplier)
     {
-        ChangeVelocity(moveDirection * _jumpForce);
+        ChangeVelocity(moveDirection * _jumpForce * forceMulltiplier);
     }
 
     public void ChangeVelocity(Vector2 newVelocity)

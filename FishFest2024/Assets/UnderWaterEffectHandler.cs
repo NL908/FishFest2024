@@ -23,4 +23,9 @@ public class UnderWaterEffectHandler : MonoBehaviour
     {
         underWaterEffect.SetActive(false);
     }
+
+    public void EnableEffect()
+    {
+        underWaterEffect.SetActive(true);
+    }
 }

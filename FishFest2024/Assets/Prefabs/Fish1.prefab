@@ -162,11 +162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 20
-  baseSpawnRate: 0.15
+  baseSpawnRate: 0.2
   endSpawnRate: 0.1
   spawnDistance: 2
-  healthGained: 2
-  currencyGained: 1
+  healthGained: 5
+  minCurrencyGained: 5
+  maxCurrencyGained: 10
   fishSwimDirection: {x: 1, y: 0}
   swingMagnitude: 1
   swingSpeed: 0.5

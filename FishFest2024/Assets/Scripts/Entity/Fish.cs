@@ -5,9 +5,9 @@ using UnityEngine;
 public class Fish : CollidableEntity
 {
     [SerializeField]
-    private float healthGained = 1;
-    [SerializeField]
-    private float currencyGained = 1;
+    private float healthGained = 5;
+    [SerializeField] float minCurrencyGained = 1;
+    [SerializeField] float maxCurrencyGained = 10;
 
     [SerializeField]
     private Vector2 fishSwimDirection;
@@ -32,6 +32,9 @@ public class Fish : CollidableEntity
 
     protected override void HandleCollision(Collider2D collision)
     {
+
+        float currencyGained = Mathf.Round(Random.Range(minCurrencyGained, maxCurrencyGained));
+        playerManager.IncreaseCurrency(currencyGained);
         playerManager.HandleFishCollision(healthGained, currencyGained);
     }
 

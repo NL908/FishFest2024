@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float jumpHPReduction = 0;
     public float currency = 0;
+    [SerializeField] float jumpDistanceMultiplier = 1.0f;
 
     private float protectionStartTime = 10;
     private float protectionTimer = 0;
@@ -97,7 +98,7 @@ public class PlayerManager : MonoBehaviour
         if (isJumpPerformed)
         {
             // Call Locomotion to perform jump locomotion
-            playerLocomotion.HandleJump(playerInputHandler.aimDirection);
+            playerLocomotion.HandleJump(playerInputHandler.aimDirection, jumpDistanceMultiplier);
 
             // Play jump audio
             if (AudioManager.instance) AudioManager.instance.PlaySound("jump");
@@ -210,6 +211,7 @@ public class PlayerManager : MonoBehaviour
             ChangeHP(hp - healthLost);
         }
         //GameManager.instance.TriggerScreenShake();
+        StartCoroutine(GameManager.instance.TriggerVignette());
     }
 
     public void HandleHPDepletion()
@@ -252,6 +254,7 @@ public class PlayerManager : MonoBehaviour
         jumpHPReduction = playerData.jumpHPReduction;
         currency = playerData.currency;
         maxHP = DefaultHP + bonusHP;
+        jumpDistanceMultiplier = playerData.jumpDistanceMultiplier;
         ChangeHP(maxHP);
         ChangeCurrency(currency);
     }
@@ -275,7 +278,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void ReduceJumpCost(float amount)
     {
-        jumpHPReduction += amount;
+        jumpHPReduction = Mathf.Clamp(jumpHPReduction + amount, 0, jumpHPCost - 0.1f);
     }
     public void IncreaseBonusHP(float amount)
     {
@@ -301,12 +304,17 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        playerData.SavePlayerData(currency, bonusHP, jumpHPReduction);
+        playerData.SavePlayerData(currency, bonusHP, jumpHPReduction, jumpDistanceMultiplier);
     }
 
     public float GetDepthFactor()
     {
         // 0 at bottom, 1 at top
         return Mathf.Max(0.0f, transform.position.y) / GameManager.instance.oceanDepth;
+    }
+
+    public void IncreaseJumpDistance(float additionalPercent)
+    {
+        jumpDistanceMultiplier = Mathf.Clamp(jumpDistanceMultiplier + additionalPercent, 1f, 2f);
     }
 }
