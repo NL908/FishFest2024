@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
             sounds[i].SetSource(soundObject.AddComponent<AudioSource>());
             soundObject.transform.parent = gameObject.transform;
         }
+        PlaySound("stage_bgm");
     }
 
     public void PlaySound(string name)

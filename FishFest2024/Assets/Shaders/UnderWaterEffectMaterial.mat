@@ -40,7 +40,7 @@ Material:
     - _Amptitude: 2
     - _Blend: 0.02
     - _NoiseScale: 5
-    - _PanSpeed: 5
-    - _UnscaledTime: 0
+    - _PanSpeed: 0.2
+    - _UnscaledTime: 90.98639
     m_Colors: []
   m_BuildTextureStacks: []

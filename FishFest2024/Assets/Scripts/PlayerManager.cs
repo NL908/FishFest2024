@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     PlayerInputHandler playerInputHandler;
     PlayerLocomotion playerLocomotion;
+    PlayerData playerData;
 
     AimCircleController aimCircleController;
 
@@ -56,6 +57,11 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
         aimCircleController = GetComponentInChildren<AimCircleController>();
         isControllable = true;
+    }
+
+    private void Start()
+    {
+        playerData = PlayerData.instance;
         IntializePlayerStats();
     }
 
@@ -88,7 +94,7 @@ public class PlayerManager : MonoBehaviour
             if (isHealthDepleting && !isProtectionBubble)
             {
                 float cost = jumpHPCost - jumpHPReduction;
-                ChangeHP(hp - cost);
+                ChangeHP(hp - Mathf.Max(0.1f, cost));
             }
         }
     }
@@ -108,7 +114,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             aimCircleController.DisableAim();
-            if (!PauseMenu.instance.isPaused)
+            if (!PauseMenu.instance.isPaused && !GameManager.instance.isPlayWin)
             {
                 Time.timeScale = 1f;
             }
@@ -204,6 +210,7 @@ public class PlayerManager : MonoBehaviour
 
     public void GameOver(string reason)
     {
+        AudioManager.instance.PlaySound("player_fall");
         Debug.Log(reason);
         isControllable = false;
         isHealthDepleting = false;
@@ -221,6 +228,10 @@ public class PlayerManager : MonoBehaviour
 
     public void IntializePlayerStats()
     {
+        bonusHP = playerData.bonusHP;
+        jumpHPReduction = playerData.jumpHPReduction;
+        currency = playerData.currency;
+        maxHP = DefaultHP + bonusHP;
         ChangeHP(maxHP);
         ChangeCurrency(currency);
     }
@@ -248,9 +259,12 @@ public class PlayerManager : MonoBehaviour
     }
     public void IncreaseBonusHP(float amount)
     {
-        bonusHP += amount;
-        maxHP += amount;
-        ChangeHP(hp + amount);
+        if (bonusHP < DefaultHP)
+        {
+            bonusHP += amount;
+            maxHP += amount;
+            ChangeHP(hp + amount);
+        }
     }
     public void ChangeCurrency(float newAmount)
     {
@@ -263,5 +277,10 @@ public class PlayerManager : MonoBehaviour
         isProtectionBubble = true;
         protectionTimer = protectionStartTime; 
         ToggleHPBubble(true);
+    }
+
+    private void OnDestroy()
+    {
+        playerData.SavePlayerData(currency, bonusHP, jumpHPReduction);
     }
 }
