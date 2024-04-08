@@ -204,6 +204,7 @@ public class PlayerManager : MonoBehaviour
 
     public void GameOver(string reason)
     {
+        AudioManager.instance.PlaySound("player_fall");
         Debug.Log(reason);
         isControllable = false;
         isHealthDepleting = false;

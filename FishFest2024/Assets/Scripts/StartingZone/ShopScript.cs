@@ -20,6 +20,7 @@ public class ShopScript : MonoBehaviour
         if (!shopCanvasScript.isShopOpen && collision.gameObject.layer == 3)
         {
             shopCanvasScript.OpenShop();
+            AudioManager.instance.PlaySound("shop_open");
         }
     }
 }
