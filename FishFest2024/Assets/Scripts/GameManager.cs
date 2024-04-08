@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     private TransitionSettings _levelTransitionSetting;
 
     [SerializeField] SpawnablesList spawnablesObject;
+     [SerializeField] SpawnablesList backgroundFishObject;
     // triggers spawn method when camera travels this amount of distance
     [SerializeField] float spawnThresholdDistance = 1f;
     // Offset of the spawning item from the camera position to the top of the viewport
@@ -52,8 +53,10 @@ public class GameManager : MonoBehaviour
     public int score = 0;
 
     private CollidableEntity[] spawnables;
+    private CollidableEntity[] backgroundFishSpawnables;
     // Array of spawn distance corresponding to the index of spawnables, it will be updated when camera moves, and when it is less than 0, the corresponding entity can be spawned
     private float[] spawnablesDistance;
+    private float[] backgroundFishDistance;
     public bool isGameActive = false;
     private Vector3 lastCameraPosition;
     private float distanceMovedUpwards = 0f;
@@ -63,10 +66,15 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         spawnables = spawnablesObject.spawnables;
+        backgroundFishSpawnables = backgroundFishObject.spawnables;
         spawnablesDistance = new float[spawnables.Length];
+        backgroundFishDistance = new float[backgroundFishSpawnables.Length];
         // Setup spawn distance array
         for (int i = 0; i < spawnables.Length; i++) {
             spawnablesDistance[i] = spawnables[i].getSpawnDistance();
+        }
+        for (int i = 0; i < backgroundFishDistance.Length; i++) {
+            spawnablesDistance[i] = backgroundFishSpawnables[i].getSpawnDistance();
         }
         cameraTransform = Camera.main.transform;
         _underWaterEffectHandler = GetComponent<UnderWaterEffectHandler>();
@@ -104,6 +112,9 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < spawnables.Length; i++) {
                 spawnablesDistance[i] -= upwardsMovement;
             }
+            for (int i = 0; i < backgroundFishSpawnables.Length; i++) {
+                backgroundFishDistance[i] -= upwardsMovement;
+            }
         }
 
         // Check if the distance moved upwards exceeds the threshold
@@ -114,6 +125,7 @@ public class GameManager : MonoBehaviour
             
             // Call the method to spawn items/enemies
             SpawnEntities();
+            SpawnBackgroundFish();
         }
     }
 
@@ -160,6 +172,38 @@ public class GameManager : MonoBehaviour
             }
 
             Instantiate(spawnable, new Vector3(UnityEngine.Random.Range(horizontalSpawnRangeMin, horizontalSpawnRangeMax), cameraTransform.position.y + spawnTopDistance, 0), Quaternion.identity);
+            break;
+        }
+    }
+
+    void SpawnBackgroundFish()
+    {
+        if (!isGameActive) return;
+        // Do not spawn above ocean depth
+        if (cameraTransform.position.y + spawnTopDistance >= oceanDepth) return;
+        for(int i = 0; i < backgroundFishSpawnables.Length; i++) {
+            CollidableEntity spawnable = backgroundFishSpawnables[i];
+            //check if enough distance is passed to be able to spawn this entity
+            if (backgroundFishDistance[i] > 0) {
+                continue;
+            }
+            backgroundFishDistance[i] = spawnable.getSpawnDistance();
+            // random number check to see if this item will be spawned
+            float rand = UnityEngine.Random.value;
+            float scaleFactor = Math.Max(0.0f, PlayerManager.instance.transform.position.y) / oceanDepth;
+            if (rand > spawnable.getSpawnRate(scaleFactor)) {
+                Debug.Log("spawning "+spawnable+" failed");
+                continue;
+            }
+
+            CollidableEntity spawnedFish = Instantiate(spawnable, new Vector3(UnityEngine.Random.Range(horizontalSpawnRangeMin, horizontalSpawnRangeMax), cameraTransform.position.y + spawnTopDistance, 0), Quaternion.identity);
+            spawnedFish.transform.localScale = spawnedFish.transform.localScale * 0.7f;
+            // so that player can't interact with background fish
+            Destroy(spawnedFish.GetComponent<Collider2D>());
+            SpriteRenderer fishSprite = spawnedFish.GetComponent<SpriteRenderer>();
+            // modify fish color to gray
+            fishSprite.sortingOrder = -1;
+            fishSprite.color = new Color(0.23f, 0.23f, 0.23f, 0.2f);
             break;
         }
     }

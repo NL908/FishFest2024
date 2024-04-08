@@ -17,6 +17,10 @@ public class Fish : CollidableEntity
     private float swingSpeed = 1f;
 
     private float _randomTime;
+    void Awake()
+    {
+        ChangeSpriteColorToRandom();
+    }
 
     protected override void Start()
     {
@@ -24,7 +28,6 @@ public class Fish : CollidableEntity
         _randomTime = Random.Range(0, 3);
         // flip the sprite based on x direction
         if (fishSwimDirection.x > 0) GetComponent<SpriteRenderer>().flipX = true;
-        ChangeSpriteColorToRandom();
     }
 
     protected override void HandleCollision(Collider2D collision)
