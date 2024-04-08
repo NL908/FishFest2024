@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject startingZone;
     private Transform cameraTransform;
 
+    private UnderWaterEffectHandler _underWaterEffectHandler;
+
     [SerializeField]
     private CinemachineVirtualCamera _virtualCamera;
 
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         cameraTransform = Camera.main.transform;
+        _underWaterEffectHandler = GetComponent<UnderWaterEffectHandler>();
     }
 
     void Start()
@@ -143,6 +146,8 @@ public class GameManager : MonoBehaviour
     void SpawnEntities()
     {
         if (!isGameActive) return;
+        // Do not spawn above ocean depth
+        if (cameraTransform.position.y + spawnTopDistance >= oceanDepth) return;
         for(int i = 0; i < spawnables.Length; i++) {
             CollidableEntity spawnable = spawnables[i];
             //check if enough distance is passed to be able to spawn this entity
@@ -201,6 +206,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player Wins!");
             _isPlayWin = true;
             // TODO: Add logic here
+            _underWaterEffectHandler.DisableEffect();
+            Time.timeScale = 0.1f;
+            InputManager.inputActions.Player.Disable();
+            // Load Scene
         }
     }
 }
