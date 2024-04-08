@@ -54,7 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _OceanDepth: 100
+    - _OceanDepth: 40
     - _OffsetY: 0
     - _Scale: 1
     m_Colors: []

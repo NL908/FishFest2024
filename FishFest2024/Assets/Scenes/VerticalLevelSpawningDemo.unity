@@ -1122,25 +1122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1576174185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5192476155601853763, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
-  m_PrefabInstance: {fileID: 7771343338386235281}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1576174192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576174185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1706ba3dbbc139047961d0d3fd5fe633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  underWaterEffect: {fileID: 0}
-  underWaterEffectMaterial: {fileID: 0}
 --- !u!1001 &6132738119630541532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1270,8 +1251,16 @@ PrefabInstance:
       value: -0.16399063
       objectReference: {fileID: 0}
     - target: {fileID: 2732067343546845791, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732067343546845791, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732067343546845791, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 776339293
       objectReference: {fileID: 0}
     - target: {fileID: 2914693002018253321, guid: 6312012c7a5c4374b95639b2a60ceb97, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1577,15 +1566,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7383694357236027628, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
       propertyPath: oceanDepth
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5192476155601853763, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1576174192}
     - targetCorrespondingSourceObject: {fileID: 6159385430193089113, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}

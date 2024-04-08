@@ -108,7 +108,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             aimCircleController.DisableAim();
-            if (!PauseMenu.instance.isPaused)
+            if (!PauseMenu.instance.isPaused && !GameManager.instance.isPlayWin)
             {
                 Time.timeScale = 1f;
             }
