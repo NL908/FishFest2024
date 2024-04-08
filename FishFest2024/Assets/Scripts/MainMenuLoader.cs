@@ -7,6 +7,12 @@ public class MainMenuLoader : MonoBehaviour
 {
     [SerializeField]
     private TransitionSettings transitionSettings;
+
+    private void Start()
+    {
+        AudioManager.instance.PlayMenuMusic();
+    }
+
     public void LoadMainLevel()
     {
         TransitionManager.Instance().Transition("VerticalLevelSpawningDemo", transitionSettings, 0);

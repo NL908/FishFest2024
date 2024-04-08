@@ -95,6 +95,12 @@ public class GameManager : MonoBehaviour
 
         Vector3 aboveWaterBkgPos = new(0, oceanDepth, 5);
         Instantiate(_aboveWaterBackgruondPrefab, aboveWaterBkgPos, Quaternion.identity);
+
+        // Enable shader effect
+        _underWaterEffectHandler.EnableEffect();
+
+        // Play stage bgm
+        AudioManager.instance.PlayStageMusic();
     }
 
     void Update()

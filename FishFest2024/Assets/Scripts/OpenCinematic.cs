@@ -8,6 +8,7 @@ public class OpenCinematic : MonoBehaviour
     private void Start()
     {
         _loader = GetComponentInChildren<OpenCinematicLoader>();
+        AudioManager.instance.PlayMenuMusic();
     }
 
     private void Update()
