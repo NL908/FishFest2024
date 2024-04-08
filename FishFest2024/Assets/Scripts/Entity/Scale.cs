@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Scale : Item
 {
-    [SerializeField]
-    private float currencyGained = 1;
+    [SerializeField] float minCurrencyGained = 5;
+    [SerializeField] float maxCurrencyGained = 10;
     protected override void HandleCollision(Collider2D collision)
     {
-        playerManager.IncreaseMaxHP(currencyGained);
+        float currencyGained = Mathf.Round(Random.Range(minCurrencyGained, maxCurrencyGained));
+        playerManager.IncreaseCurrency(currencyGained);
         if (AudioManager.instance) AudioManager.instance.PlaySound("item_get");
     }
 

@@ -130,7 +130,7 @@ MonoBehaviour:
   baseSpawnRate: 0.05
   endSpawnRate: 0.05
   spawnDistance: 10
-  maxHPIncreased: 10
+  maxHPIncreased: 20
 --- !u!70 &8357258234730722089
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
