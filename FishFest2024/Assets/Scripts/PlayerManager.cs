@@ -148,6 +148,7 @@ public class PlayerManager : MonoBehaviour
         // HP detection
         if (hp <= 0f)
         {
+            isAiming = false;
             isControllable = false;
             isHealthDepleting = false;
         }

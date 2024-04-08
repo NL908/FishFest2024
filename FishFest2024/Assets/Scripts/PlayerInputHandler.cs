@@ -71,6 +71,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnJumpRelease(InputAction.CallbackContext obj)
     {
         if (!playerManager.isControllable) {
+            playerManager.isAiming = false;
             return;
         }
         if (playerManager.isAiming)
