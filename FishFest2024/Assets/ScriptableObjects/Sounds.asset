@@ -39,7 +39,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - soundName: stage_bgm
-    clip: {fileID: 8300000, guid: 2e9d07ea83b45364fbc8a2938ab45631, type: 3}
+    clip: {fileID: 8300000, guid: ecb33bc802481b541991cbead5c99b3f, type: 3}
     volume: 0.437
     pitch: 1
     loop: 1
