@@ -168,6 +168,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &78393988 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8361978201221519835, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
+  m_PrefabInstance: {fileID: 7771343338386235281}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &90121550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1241,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1576174185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5192476155601853763, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
+  m_PrefabInstance: {fileID: 7771343338386235281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1576174188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576174185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71263b38ac599db499ba18243efc8086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundsr: {fileID: 78393988}
+  endColorBufferDistance: 20
+  _endColor: {r: 0, g: 0.7137255, b: 0.9019608, a: 1}
 --- !u!1 &2937157143860839799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,6 +1860,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5192476155601853763, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1576174188}
     - targetCorrespondingSourceObject: {fileID: 6159385430193089113, guid: d1301a836fd46c9479c68bd966acc719, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
