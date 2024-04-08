@@ -33,3 +33,28 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - soundName: player_fall
+    clip: {fileID: 8300000, guid: a910bacf640432f4caedddb13d6eac55, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: stage_bgm
+    clip: {fileID: 8300000, guid: 2e9d07ea83b45364fbc8a2938ab45631, type: 3}
+    volume: 0.437
+    pitch: 1
+    loop: 1
+  - soundName: shop_open
+    clip: {fileID: 8300000, guid: 85629803f8bd57c47ac160282a5d19d6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: player_landing
+    clip: {fileID: 8300000, guid: 4f0e4946ecfa56543a3538b2c45329f8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: hit_wall
+    clip: {fileID: 8300000, guid: e5456cfd47959c749a173fff56fa9d71, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
