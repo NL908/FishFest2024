@@ -5,7 +5,7 @@ using UnityEngine;
 public class OpenCinematic : MonoBehaviour
 {
     private OpenCinematicLoader _loader;
-    private void Awake()
+    private void Start()
     {
         _loader = GetComponentInChildren<OpenCinematicLoader>();
     }
@@ -14,7 +14,7 @@ public class OpenCinematic : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _loader.enabled = true;
+            _loader.LoadMainMenu();
         }
     }
 }

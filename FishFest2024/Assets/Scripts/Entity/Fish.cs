@@ -24,6 +24,7 @@ public class Fish : CollidableEntity
         _randomTime = Random.Range(0, 3);
         // flip the sprite based on x direction
         if (fishSwimDirection.x > 0) GetComponent<SpriteRenderer>().flipX = true;
+        ChangeSpriteColorToRandom();
     }
 
     protected override void HandleCollision(Collider2D collision)
@@ -43,5 +44,19 @@ public class Fish : CollidableEntity
         // Will also swing up & down additional to the swim direciton
         velocity.x = fishSwimDirection.x;
         velocity.y = fishSwimDirection.y + (Mathf.Cos(Time.time * swingSpeed + _randomTime)) * swingMagnitude;
+    }
+
+    void ChangeSpriteColorToRandom()
+    {
+        // Get the SpriteRenderer component from the entity
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            // Generate a random color
+            Color randomColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            
+            // Set the sprite renderer's color to the newly generated random color
+            spriteRenderer.color = randomColor;
+        }
     }
 }

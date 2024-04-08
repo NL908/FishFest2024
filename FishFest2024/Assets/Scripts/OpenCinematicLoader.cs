@@ -5,13 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class OpenCinematicLoader : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        LoadMainMenu();
-    }
 
-    private void LoadMainMenu()
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("StartingScreen", LoadSceneMode.Single);
     }
 }
