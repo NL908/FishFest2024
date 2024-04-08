@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 20
   baseSpawnRate: 0.15
+  endSpawnRate: 0.1
   spawnDistance: 2
   healthGained: 2
   currencyGained: 1
