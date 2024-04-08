@@ -15,6 +15,9 @@ public class PlayerManager : MonoBehaviour
 
     AimCircleController aimCircleController;
 
+    [SerializeField]
+    private ParticleSystem _jumpParticle;
+
     // Player Attributes
     [SerializeField]
     private const float DefaultHP = 20;
@@ -90,12 +93,19 @@ public class PlayerManager : MonoBehaviour
             // Call Locomotion to perform jump locomotion
             playerLocomotion.HandleJump(playerInputHandler.aimDirection);
 
+            // Play jump audio
+            if (AudioManager.instance) AudioManager.instance.PlaySound("jump");
+
+            _jumpParticle.Play();
+
             // Decrese HP when jump
             if (isHealthDepleting && !isProtectionBubble)
             {
                 float cost = jumpHPCost - jumpHPReduction;
                 ChangeHP(hp - Mathf.Max(0.1f, cost));
             }
+
+            // Play bubble particle
         }
     }
 
