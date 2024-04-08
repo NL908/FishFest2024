@@ -164,5 +164,5 @@ MonoBehaviour:
   score: 0
   baseSpawnRate: 0.05
   endSpawnRate: 0.1
-  spawnDistance: 6
-  currencyGained: 5
+  spawnDistance: 5
+  minCurrencyGained: 5
