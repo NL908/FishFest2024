@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     private CinemachineVirtualCamera _virtualCamera;
 
     [SerializeField]
+    private GameObject _aboveWaterBackgruondPrefab;
+
+    [SerializeField]
     private TMP_Text _depthMeterText;
     [SerializeField]
     private TMP_Text _scoreText;
@@ -83,7 +86,8 @@ public class GameManager : MonoBehaviour
         lc.maxYpos = oceanDepth;
         _wallSpriteRenderer.material.SetFloat("_OceanDepth", oceanDepth);
 
-        
+        Vector3 aboveWaterBkgPos = new(0, oceanDepth, 5);
+        Instantiate(_aboveWaterBackgruondPrefab, aboveWaterBkgPos, Quaternion.identity);
     }
 
     void Update()
