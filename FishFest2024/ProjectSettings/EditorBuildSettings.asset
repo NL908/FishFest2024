@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VerticalLevelSpawningDemo.unity
     guid: 2937f3e51ddb3e54a99be8719f6dcbc5
+  - enabled: 1
+    path: Assets/Scenes/EndingScreen.unity
+    guid: d754466948bdbe24e88e428607ee1628
   m_configObjects: {}

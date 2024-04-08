@@ -1375,6 +1375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newspaperGameobject: {fileID: 684156370178801840}
+  transitionSetting: {fileID: 11400000, guid: 6b3bdb9e8eba6844293ca8085248c54d, type: 2}
 --- !u!1 &5241539403526064598
 GameObject:
   m_ObjectHideFlags: 0
