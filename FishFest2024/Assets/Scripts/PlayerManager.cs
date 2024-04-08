@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float jumpHPReduction = 0;
     public float currency = 0;
-    [SerializeField] float jumpDistanceMultiplier = 1;
+    [SerializeField] float jumpDistanceMultiplier = 1.0f;
 
     private float protectionStartTime = 10;
     private float protectionTimer = 0;

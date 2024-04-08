@@ -1148,6 +1148,7 @@ MonoBehaviour:
   bonusHP: 0
   jumpHPReduction: 0
   currency: 0
+  jumpDistanceMultiplier: 1
 --- !u!4 &729818634
 Transform:
   m_ObjectHideFlags: 0
@@ -1579,12 +1580,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingZone: {fileID: 3133495763909615807}
-  _volume: {fileID: 665067235}
+  _volume: {fileID: 0}
   _virtualCamera: {fileID: 4254585644733893395}
   isShaking: 0
   shakeDuration: 2
   vignetteFadeInDuration: 0.5
-  vignetteFadeOutDuration: 3
+  vignetteFadeOutDuration: 1
   _aboveWaterBackgruondPrefab: {fileID: 3874098217698526793, guid: 39dd5572240c722488df40e4cc8bcc62, type: 3}
   _depthMeterText: {fileID: 3676067849441539418}
   _scoreText: {fileID: 1567329869266330864}

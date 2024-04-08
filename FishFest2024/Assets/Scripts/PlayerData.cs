@@ -8,7 +8,7 @@ public class PlayerData : MonoBehaviour
     public float bonusHP;
     public float jumpHPReduction;
     public float currency;
-    public float jumpDistanceMultiplier;
+    public float jumpDistanceMultiplier = 1.0f;
     void Awake()
     {
         if (instance != null && instance != this)
