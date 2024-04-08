@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         inputActions = new PlayerControl();
-        Debug.Log("Init");
     }
 
     public static void ToggleActionMap(InputActionMap actionMap)

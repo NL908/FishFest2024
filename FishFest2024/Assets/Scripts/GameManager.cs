@@ -159,7 +159,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
         isGameActive = false;
         TransitionManager.Instance().Transition(SceneManager.GetActiveScene().name, _levelTransitionSetting, 0);
     }
@@ -180,7 +179,6 @@ public class GameManager : MonoBehaviour
             float rand = UnityEngine.Random.value;
             float scaleFactor = Math.Max(0.0f, PlayerManager.instance.transform.position.y) / oceanDepth;
             if (rand > spawnable.getSpawnRate(scaleFactor)) {
-                Debug.Log("spawning "+spawnable+" failed");
                 continue;
             }
 
@@ -205,7 +203,6 @@ public class GameManager : MonoBehaviour
             float rand = UnityEngine.Random.value;
             float scaleFactor = Math.Max(0.0f, PlayerManager.instance.transform.position.y) / oceanDepth;
             if (rand > spawnable.getSpawnRate(scaleFactor)) {
-                Debug.Log("spawning "+spawnable+" failed");
                 continue;
             }
 
@@ -257,7 +254,6 @@ public class GameManager : MonoBehaviour
         if (PlayerManager.instance.transform.position.y > oceanDepth && !isPlayWin)
         {
             // Player beats the game!
-            Debug.Log("Player Wins!");
             isPlayWin = true;
             // TODO: Add logic here
             _underWaterEffectHandler.DisableEffect();
@@ -301,7 +297,6 @@ public class GameManager : MonoBehaviour
             while (elapsedTime < vignetteFadeInDuration)
             {
                 elapsedTime += Time.fixedDeltaTime;
-                //Debug.Log(elapsedTime);
 
                 float intensity = Mathf.Lerp(0, 0.5f, (elapsedTime / vignetteFadeInDuration));
                 vignette.intensity.Override(intensity);
@@ -313,7 +308,6 @@ public class GameManager : MonoBehaviour
             while (elapsedTime < vignetteFadeOutDuration)
             {
                 elapsedTime += Time.fixedDeltaTime;
-                //Debug.Log(elapsedTime);
 
                 float intensity = Mathf.Lerp(0.5f, 0, (elapsedTime / vignetteFadeOutDuration));
                 vignette.intensity.Override(intensity);

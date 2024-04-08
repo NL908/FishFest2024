@@ -41,7 +41,6 @@ public abstract class CollidableEntity : MonoBehaviour
             HandleDeath();
             Destroy(gameObject);
             GameManager.instance.AddScore(score);
-            Debug.Log(gameObject.name + " detects collision with " + collision.gameObject.name);
         }
     }
 
@@ -53,7 +52,6 @@ public abstract class CollidableEntity : MonoBehaviour
     // Can be overridden in child classes to return a modified spawn rate
     public float getSpawnRate(float scaleFactor = 0f) {
         float spawnRate = baseSpawnRate*(1-scaleFactor) + endSpawnRate*scaleFactor;
-        Debug.Log(gameObject.name+" spawn rate: "+spawnRate);
         return spawnRate;
     }
 
