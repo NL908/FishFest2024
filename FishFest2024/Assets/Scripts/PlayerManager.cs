@@ -20,17 +20,17 @@ public class PlayerManager : MonoBehaviour
 
     // Player Attributes
     [SerializeField]
-    private const float DefaultHP = 20;
+    private float DefaultHP = 100;
     [SerializeField]
     private float hp;
     [SerializeField]
-    private float maxHP = DefaultHP;
+    private float maxHP;
     [SerializeField]
-    private float hpDeleptionRate = 0.1f;
+    private float hpDeleptionRate = 1f;
     [SerializeField]
     private float bonusHP = 0;
     [SerializeField]
-    private float jumpHPCost = 1;
+    private float jumpHPCost = 5;
     [SerializeField]
     private float jumpHPReduction = 0;
     public float currency = 0;
