@@ -10,5 +10,6 @@ public class EndingScreen : MonoBehaviour
     private void Start()
     {
         TransitionManager.Instance().Transition("StartingScreen", transitionSettings, 5);
+        AudioManager.instance.PlayMenuMusic();
     }
 }

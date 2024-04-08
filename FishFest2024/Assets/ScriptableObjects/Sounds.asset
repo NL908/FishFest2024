@@ -39,7 +39,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - soundName: stage_bgm
-    clip: {fileID: 8300000, guid: ecb33bc802481b541991cbead5c99b3f, type: 3}
+    clip: {fileID: 8300000, guid: 0fbb03017207acb40a487c7f8916f1f8, type: 3}
     volume: 0.437
     pitch: 1
     loop: 1
@@ -56,5 +56,10 @@ MonoBehaviour:
   - soundName: hit_wall
     clip: {fileID: 8300000, guid: e5456cfd47959c749a173fff56fa9d71, type: 3}
     volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: menu_bgm
+    clip: {fileID: 8300000, guid: 067649358ab03964cbdba29d2d11487f, type: 3}
+    volume: 0.436
     pitch: 1
     loop: 0
