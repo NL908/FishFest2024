@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
     public bool isControllable = false;
     public bool isHealthDepleting = false;
     public bool isProtectionBubble = false;
-    public bool isGameOverIfFallOffScreen = true;
+    public bool isGameOverIfFallOffScreen = false;
 
 
     private void Awake()

@@ -35,7 +35,7 @@ public class FirstLanding : MonoBehaviour
             float x = transform.InverseTransformPoint(collision.transform.position).x;
             shape.position = new Vector3(x, shapePos.y, shapePos.z);
             _landingParticle.Play();
-
+            PlayerManager.instance.isGameOverIfFallOffScreen = true;
             GameManager.instance.BlobLand();
         }
     }
