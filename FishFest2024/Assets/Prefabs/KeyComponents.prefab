@@ -1219,7 +1219,7 @@ MonoBehaviour:
   _aboveWaterBackgruondPrefab: {fileID: 3874098217698526793, guid: 39dd5572240c722488df40e4cc8bcc62, type: 3}
   _depthMeterText: {fileID: 6403379437666986699}
   _scoreText: {fileID: 9086326304003242849}
-  _wallSpriteRenderer: {fileID: 5474021647888355262}
+  _wallMaterial: {fileID: 2100000, guid: e6a36a642014adb4694f1889a65f9a67, type: 2}
   _levelTransitionSetting: {fileID: 11400000, guid: 6b3bdb9e8eba6844293ca8085248c54d, type: 2}
   spawnablesObject: {fileID: 11400000, guid: 1122c8144119e2843b24c854c185c071, type: 2}
   spawnThresholdDistance: 1

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     private TMP_Text _scoreText;
 
     [SerializeField]
-    private SpriteRenderer _wallSpriteRenderer;
+    private Material _wallMaterial;
 
     [SerializeField]
     private TransitionSettings _levelTransitionSetting;
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         // Setup oceanDeath
         LockCamera lc = _virtualCamera.transform.GetComponent<LockCamera>();
         lc.maxYpos = oceanDepth;
-        _wallSpriteRenderer.material.SetFloat("_OceanDepth", oceanDepth);
+        _wallMaterial.SetFloat("_OceanDepth", oceanDepth);
 
         Vector3 aboveWaterBkgPos = new(0, oceanDepth, 5);
         Instantiate(_aboveWaterBackgruondPrefab, aboveWaterBkgPos, Quaternion.identity);
