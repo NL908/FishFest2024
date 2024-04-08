@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
     private void UpdateDepthTextUI()
     {
         float currentDepth = PlayerManager.instance.transform.position.y - oceanDepth;
-        _depthMeterText.text = string.Format("{0:0} m", currentDepth);
+        _depthMeterText.text = string.Format("{0:0} m", currentDepth * (1500 / oceanDepth));
     }
 
     // Check if play is above the ocean (depth)
