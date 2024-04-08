@@ -165,7 +165,7 @@ MonoBehaviour:
   baseSpawnRate: 0.2
   endSpawnRate: 0.15
   spawnDistance: 2
-  healthGained: 5
+  healthGained: 3
   minCurrencyGained: 1
   maxCurrencyGained: 10
   fishSwimDirection: {x: 3, y: 0}
