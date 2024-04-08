@@ -1546,7 +1546,7 @@ MonoBehaviour:
   spawnTopDistance: 9
   horizontalSpawnRangeMin: -3.5
   horizontalSpawnRangeMax: 3.5
-  oceanDepth: 40
+  oceanDepth: 500
   score: 0
   isGameActive: 0
   isPlayWin: 0
