@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -55,6 +56,7 @@ public class PlayerManager : MonoBehaviour
     public bool isHealthDepleting = false;
     public bool isProtectionBubble = false;
     public bool isGameOverIfFallOffScreen = false;
+    public bool isShaking = false;
 
 
     private void Awake()
@@ -207,7 +209,9 @@ public class PlayerManager : MonoBehaviour
         {
             ChangeHP(hp - healthLost);
         }
+        GameManager.instance.TriggerScreenShake();
     }
+
     public void HandleHPDepletion()
     {
         if (isHealthDepleting && !isProtectionBubble)
