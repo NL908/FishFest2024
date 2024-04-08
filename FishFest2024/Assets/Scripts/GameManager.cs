@@ -59,20 +59,12 @@ public class GameManager : MonoBehaviour
     public bool isPlayWin = false;
     void Awake()
     {
-        if(instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-            spawnables = spawnablesObject.spawnables;
-            spawnablesDistance = new float[spawnables.Length];
-            // Setup spawn distance array
-            for (int i = 0; i < spawnables.Length; i++) {
-                spawnablesDistance[i] = spawnables[i].getSpawnDistance();
-            }
-            DontDestroyOnLoad(this);
+        instance = this;
+        spawnables = spawnablesObject.spawnables;
+        spawnablesDistance = new float[spawnables.Length];
+        // Setup spawn distance array
+        for (int i = 0; i < spawnables.Length; i++) {
+            spawnablesDistance[i] = spawnables[i].getSpawnDistance();
         }
         cameraTransform = Camera.main.transform;
         _underWaterEffectHandler = GetComponent<UnderWaterEffectHandler>();

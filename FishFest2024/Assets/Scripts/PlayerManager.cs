@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     PlayerInputHandler playerInputHandler;
     PlayerLocomotion playerLocomotion;
+    PlayerData playerData;
 
     AimCircleController aimCircleController;
 
@@ -56,6 +57,11 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
         aimCircleController = GetComponentInChildren<AimCircleController>();
         isControllable = true;
+    }
+
+    private void Start()
+    {
+        playerData = PlayerData.instance;
         IntializePlayerStats();
     }
 
@@ -204,6 +210,7 @@ public class PlayerManager : MonoBehaviour
 
     public void GameOver(string reason)
     {
+        AudioManager.instance.PlaySound("player_fall");
         Debug.Log(reason);
         isControllable = false;
         isHealthDepleting = false;
@@ -221,6 +228,10 @@ public class PlayerManager : MonoBehaviour
 
     public void IntializePlayerStats()
     {
+        bonusHP = playerData.bonusHP;
+        jumpHPReduction = playerData.jumpHPReduction;
+        currency = playerData.currency;
+        maxHP = DefaultHP + bonusHP;
         ChangeHP(maxHP);
         ChangeCurrency(currency);
     }
@@ -266,5 +277,10 @@ public class PlayerManager : MonoBehaviour
         isProtectionBubble = true;
         protectionTimer = protectionStartTime; 
         ToggleHPBubble(true);
+    }
+
+    private void OnDestroy()
+    {
+        playerData.SavePlayerData(currency, bonusHP, jumpHPReduction);
     }
 }

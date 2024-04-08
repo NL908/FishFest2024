@@ -28,6 +28,7 @@ public class FirstLanding : MonoBehaviour
         // Our Blob LANDS!
         if (_isActive && collision.tag == "Player")
         {
+            AudioManager.instance.PlaySound("player_landing");
             _isActive = false;
             _landingParticle.Play();
             var shape = _landingParticle.shape;
