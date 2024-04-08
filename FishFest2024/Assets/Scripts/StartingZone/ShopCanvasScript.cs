@@ -28,6 +28,7 @@ public class ShopCanvasScript : MonoBehaviour
         isShopOpen = true;
         gameObject.SetActive(true);
         shopSprite.sprite = shopOpenSprite;
+        playerManager.isAiming = false;
         InputManager.inputActions.Player.Disable();
         UpdateCurrency();
     }
