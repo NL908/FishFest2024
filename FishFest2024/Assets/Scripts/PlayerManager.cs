@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
             if (isHealthDepleting && !isProtectionBubble)
             {
                 float cost = jumpHPCost - jumpHPReduction;
-                ChangeHP(hp - cost);
+                ChangeHP(hp - Mathf.Max(0.1f, cost));
             }
         }
     }
