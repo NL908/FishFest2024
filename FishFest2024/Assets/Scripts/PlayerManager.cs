@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
             if (isHealthDepleting && !isProtectionBubble)
             {
                 float cost = jumpHPCost - jumpHPReduction;
-                ChangeHP(hp - cost);
+                ChangeHP(hp - Mathf.Max(0.1f, cost));
             }
         }
     }
@@ -248,9 +248,12 @@ public class PlayerManager : MonoBehaviour
     }
     public void IncreaseBonusHP(float amount)
     {
-        bonusHP += amount;
-        maxHP += amount;
-        ChangeHP(hp + amount);
+        if (bonusHP < DefaultHP)
+        {
+            bonusHP += amount;
+            maxHP += amount;
+            ChangeHP(hp + amount);
+        }
     }
     public void ChangeCurrency(float newAmount)
     {
