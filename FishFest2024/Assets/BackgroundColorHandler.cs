@@ -39,7 +39,6 @@ public class BackgroundColorHandler : MonoBehaviour
             _startColor, _endColor,
             Mathf.Clamp01(Camera.main.transform.position.y / (oceanDepth - endColorBufferDistance))
             );
-        Debug.Log(Mathf.Clamp01(Camera.main.transform.position.y / (oceanDepth - endColorBufferDistance)));
     }
 
     private void Update()
