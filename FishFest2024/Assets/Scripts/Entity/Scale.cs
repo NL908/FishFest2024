@@ -10,7 +10,7 @@ public class Scale : Item
     protected override void HandleCollision(Collider2D collision)
     {
         float currencyGained = Mathf.Round(Random.Range(minCurrencyGained, maxCurrencyGained));
-        playerManager.IncreaseMaxHP(currencyGained);
+        playerManager.IncreaseCurrency(currencyGained);
         if (AudioManager.instance) AudioManager.instance.PlaySound("item_get");
     }
 
