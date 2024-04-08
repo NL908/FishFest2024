@@ -51,11 +51,10 @@ public class Fish : CollidableEntity
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            float[] hues = new float[] { 0f, 0.05f, 0.1f, 0.15f, 0.65f, 0.7f }; 
-            float hue = hues[Random.Range(0, hues.Length)];
+            float hue = Random.Range(0f, 1f);
 
-            float saturation = Random.Range(0.95f, 1f); 
-            float brightness = Random.Range(0.95f, 1f); 
+            float saturation = Random.Range(0.95f, 1f);
+            float brightness = Random.Range(0.95f, 1f);
 
             Color tropicalColor = Color.HSVToRGB(hue, saturation, brightness);
 

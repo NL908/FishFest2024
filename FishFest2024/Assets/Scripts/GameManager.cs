@@ -143,6 +143,8 @@ public class GameManager : MonoBehaviour
     void SpawnEntities()
     {
         if (!isGameActive) return;
+        // Do not spawn above ocean depth
+        if (cameraTransform.position.y + spawnTopDistance >= oceanDepth) return;
         for(int i = 0; i < spawnables.Length; i++) {
             CollidableEntity spawnable = spawnables[i];
             //check if enough distance is passed to be able to spawn this entity
