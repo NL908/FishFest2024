@@ -38,6 +38,10 @@ public class PlayerManager : MonoBehaviour
     private float protectionStartTime = 10;
     private float protectionTimer = 0;
 
+    // Multplier
+    [SerializeField] float startHPDepletionMul = 2.0f;
+    [SerializeField] float endHPDepletionMult = 1.0f;
+
     // HUD object
     public TMP_Text HPText;
     public TMP_Text currencyText;
@@ -208,7 +212,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (isHealthDepleting && !isProtectionBubble)
         {
-            ChangeHP(hp - Time.deltaTime * hpDeleptionRate);
+            float depthScalar = GetDepthScalar();
+            float mult = startHPDepletionMul * (1 - depthScalar) + endHPDepletionMult * depthScalar;
+            ChangeHP(hp - Time.deltaTime * hpDeleptionRate * mult);
         }
     }
 
@@ -292,5 +298,11 @@ public class PlayerManager : MonoBehaviour
     private void OnDestroy()
     {
         playerData.SavePlayerData(currency, bonusHP, jumpHPReduction);
+    }
+
+    private float GetDepthScalar()
+    {
+        // 0 at bottom, 1 at top
+        return Mathf.Max(0.0f, transform.position.y) / GameManager.instance.oceanDepth;
     }
 }
