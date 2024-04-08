@@ -49,12 +49,18 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void MoveInput()
     {
+        if (!playerManager.isControllable) {
+            return;
+        }
         mousePosition = _movePositionAction.ReadValue<Vector2>();
         aimDirection = (startMousePos - mousePosition).normalized;
     }
 
     private void OnJumpPress(InputAction.CallbackContext obj)
     {
+        if (!playerManager.isControllable) {
+            return;
+        }
         // Record mouse position on press
         startMousePos = mousePosition;
         // Set flag
@@ -64,6 +70,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnJumpRelease(InputAction.CallbackContext obj)
     {
+        if (!playerManager.isControllable) {
+            return;
+        }
         if (playerManager.isAiming)
         {
             // Compute the mouse movement delta

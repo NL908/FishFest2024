@@ -148,7 +148,6 @@ public class PlayerManager : MonoBehaviour
         // HP detection
         if (hp <= 0f)
         {
-            InputManager.inputActions.Player.Disable();
             isControllable = false;
             isHealthDepleting = false;
         }
@@ -156,7 +155,6 @@ public class PlayerManager : MonoBehaviour
         {
             if (GameManager.instance.isGameActive)
             {
-                InputManager.inputActions.Player.Enable();
                 isControllable = true;
                 isHealthDepleting = true;
             }
