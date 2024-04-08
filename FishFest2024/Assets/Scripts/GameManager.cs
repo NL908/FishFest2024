@@ -211,6 +211,7 @@ public class GameManager : MonoBehaviour
             _underWaterEffectHandler.DisableEffect();
             Time.timeScale = 0.1f;
             InputManager.inputActions.Player.Disable();
+            PlayerManager.instance.isGameOverIfFallOffScreen = false;
             // Load Scene
             _endGameHandler.StartEndGame();
         }

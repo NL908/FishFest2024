@@ -35,6 +35,7 @@ public class EndGameHandler : MonoBehaviour
         yield return new WaitForSecondsRealtime(8f);
         // Load thank you scene here
         Debug.Log("Load Thank you scene");
+        Time.timeScale = 1f;
         TransitionManager.Instance().Transition("EndingScreen", transitionSetting, 0);
     }
 
