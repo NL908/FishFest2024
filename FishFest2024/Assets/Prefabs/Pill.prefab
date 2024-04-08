@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   baseSpawnRate: 0.05
+  endSpawnRate: 0.05
   spawnDistance: 10
   maxHPIncreased: 10
 --- !u!70 &8357258234730722089

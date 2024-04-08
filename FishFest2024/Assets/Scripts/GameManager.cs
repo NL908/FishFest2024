@@ -151,7 +151,8 @@ public class GameManager : MonoBehaviour
             spawnablesDistance[i] = spawnable.getSpawnDistance();
             // random number check to see if this item will be spawned
             float rand = UnityEngine.Random.value;
-            if (rand > spawnable.getSpawnRate(i)) {
+            float scaleFactor = Math.Max(0.0f, PlayerManager.instance.transform.position.y) / oceanDepth;
+            if (rand > spawnable.getSpawnRate(scaleFactor)) {
                 Debug.Log("spawning "+spawnable+" failed");
                 continue;
             }

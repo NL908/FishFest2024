@@ -7,7 +7,8 @@ public abstract class CollidableEntity : MonoBehaviour
     protected Vector2 velocity;
     // Award score when player collides with this object
     [SerializeField] protected int score = 0;
-    [SerializeField] protected float baseSpawnRate = 1f;
+    [SerializeField] protected float baseSpawnRate = 0.5f;
+    [SerializeField] protected float endSpawnRate = 0.6f;
     // a spawn check of this entity can be performed after camera moves this much distance
     [SerializeField] protected float spawnDistance = 3f;
 
@@ -50,8 +51,10 @@ public abstract class CollidableEntity : MonoBehaviour
     }
 
     // Can be overridden in child classes to return a modified spawn rate
-    public float getSpawnRate(int currentScore = 0) {
-        return baseSpawnRate;
+    public float getSpawnRate(float scaleFactor = 0f) {
+        float spawnRate = baseSpawnRate*(1-scaleFactor) + endSpawnRate*scaleFactor;
+        Debug.Log(gameObject.name+" spawn rate: "+spawnRate);
+        return spawnRate;
     }
 
     public float getSpawnDistance() {
